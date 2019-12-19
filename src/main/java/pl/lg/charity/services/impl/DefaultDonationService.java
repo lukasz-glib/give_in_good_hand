@@ -6,6 +6,7 @@ import pl.lg.charity.services.DonationService;
 
 import javax.transaction.Transactional;
 
+
 @Service
 @Transactional
 public class DefaultDonationService implements DonationService {
@@ -20,4 +21,6 @@ public class DefaultDonationService implements DonationService {
     public Integer findSumOfAllDonations() {
         return donationRepository.sumOfQuantities();
     }
+
+
 }

@@ -1,0 +1,10 @@
+package pl.lg.charity.services;
+
+import pl.lg.charity.dtos.CategoryDataDTO;
+
+import java.util.List;
+
+public interface CategoryService {
+
+    List<CategoryDataDTO> findAllCategories();
+}

@@ -1,11 +1,15 @@
 package pl.lg.charity.dtos;
 
 import lombok.Data;
+import pl.lg.charity.domain.entities.Category;
+import pl.lg.charity.domain.entities.Institution;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class DonationDataDTO {
@@ -25,5 +29,9 @@ public class DonationDataDTO {
     private LocalTime pickUpTime;
     @NotBlank
     private String pickUpComment;
+    @NotBlank
+    private List<Category> categories = new ArrayList<>();
+    @NotBlank
+    private Institution institution;
 
 }
