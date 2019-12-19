@@ -9,9 +9,8 @@ import javax.transaction.Transactional;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-    @Modifying
-    @Transactional
-    @Query(value = "SELECT SUM (quantity) FROM donations")
-    Long sumOfQuantities();
+    @Query(value = "SELECT SUM(quantity) FROM charity_donation.donations;", nativeQuery = true)
+    Integer sumOfQuantities();
+
 
 }

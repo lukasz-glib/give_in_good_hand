@@ -24,7 +24,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private Long quantity;
+    private Integer quantity;
 
     @OneToMany(mappedBy = "donation")
     private List<Category> categories = new ArrayList<>();
