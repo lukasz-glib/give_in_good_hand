@@ -17,7 +17,7 @@ public class DefaultDonationService implements DonationService {
     }
 
     @Override
-    public Long findSumOfAllDonations() {
+    public Integer findSumOfAllDonations() {
         return donationRepository.sumOfQuantities();
     }
 }
