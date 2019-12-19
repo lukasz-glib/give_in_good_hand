@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: oem
@@ -13,6 +15,18 @@
     <title>Title</title>
 </head>
 <body>
+<form:form method="post" modelAttribute="donations">
+        <form:checkboxes path="categories"
+                         items="${categories}"/><br/>
 
+        <form:select path="institution" items="${institutions}"/><br/>
+        <form:input path="zipCode" /><br/>
+        <form:input path="street" /><br/>
+        <form:input path="city"/><br/>
+        <form:input path="quantity"/><br/>
+        <form:textarea path="pickUpComment"/><br/>
+        <form:input type="date" path="pickUpDate"/><br/>
+        <form:input type="time" path="pickUpTime" />
+</form:form>
 </body>
 </html>
