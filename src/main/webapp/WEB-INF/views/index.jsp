@@ -84,29 +84,37 @@
 
         <ul class="help--slides-items">
             <li>
+                <c:forEach items="${allInstitutions}" var="institution" varStatus="stat" begin="0" end="1">
+                <c:if test="${stat.count==1}">
                 <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
+                    <div class="title">${institution.name}</div>
+                    <div class="subtitle">${institution.description}</div>
                 </div>
-
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
+                </c:if>
+                <c:if test="${stat.count==2}">
+                    <div class="col">
+                        <div class="title">${institution.name}</div>
+                        <div class="subtitle">${institution.description}</div>
+                    </div>
+                </c:if>
+                </c:forEach>
             </li>
-
             <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
+                <c:forEach items="${allInstitutions}" var="institution" varStatus="stat" begin="2" end="3">
+                <c:if test="${stat.count==1}">
+                    <div class="col">
+                        <div class="title">${institution.name}</div>
+                        <div class="subtitle">${institution.description}</div>
+                    </div>
+                </c:if>
+                <c:if test="${stat.count==2}">
+                    <div class="col">
+                        <div class="title">${institution.name}</div>
+                        <div class="subtitle">${institution.description}</div>
+                    </div>
+                </c:if>
+                </c:forEach>
             </li>
-
         </ul>
     </div>
 </section>
