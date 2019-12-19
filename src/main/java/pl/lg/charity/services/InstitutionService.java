@@ -7,4 +7,6 @@ import java.util.List;
 public interface InstitutionService {
 
     List<InstitutionDataDTO> findAllInstitutions();
+
+    Integer numberOfAllInstitutions();
 }

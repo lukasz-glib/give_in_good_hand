@@ -31,4 +31,9 @@ public class DefaultInstitutionService implements InstitutionService {
                 .map(m -> modelMapperFindAll.map(m, InstitutionDataDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Integer numberOfAllInstitutions() {
+        return institutionRepositories.numberOfAllInstitutions();
+    }
 }
