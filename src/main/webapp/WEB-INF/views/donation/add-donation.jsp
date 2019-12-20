@@ -16,8 +16,9 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="donations">
+
         <form:checkboxes path="categories"
-                         items="${categories}"/><br/>
+                         items="${categories}" itemLabel="name"/><br/>
 
         <form:select path="institution" items="${institutions}"/><br/>
         <form:input path="zipCode" /><br/>
@@ -27,6 +28,7 @@
         <form:textarea path="pickUpComment"/><br/>
         <form:input type="date" path="pickUpDate"/><br/>
         <form:input type="time" path="pickUpTime" />
+        <p><input type="submit" value="Dodaj"/></p>
 </form:form>
 </body>
 </html>
