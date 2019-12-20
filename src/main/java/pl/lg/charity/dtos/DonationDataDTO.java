@@ -27,7 +27,6 @@ public class DonationDataDTO {
     private LocalDate pickUpDate;
     @NotBlank
     private LocalTime pickUpTime;
-    @NotBlank
     private String pickUpComment;
     @NotBlank
     private List<Category> categories = new ArrayList<>();
