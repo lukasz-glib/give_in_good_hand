@@ -27,7 +27,7 @@ public class Donation {
     @Column(nullable = false)
     private Integer quantity;
 
-    @OneToMany(mappedBy = "donation")
+    @ManyToMany
     private List<Category> categories = new ArrayList<>();
 
     @ManyToOne
