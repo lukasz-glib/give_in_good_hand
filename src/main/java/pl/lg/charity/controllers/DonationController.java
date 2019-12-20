@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.dtos.DonationDataDTO;
 import pl.lg.charity.services.CategoryService;
 import pl.lg.charity.services.DonationService;
+import pl.lg.charity.services.InstitutionService;
 
 
 @Controller
@@ -15,16 +16,20 @@ public class DonationController {
 
     private final DonationService donationService;
     private final CategoryService categoryService;
+    private final InstitutionService institutionService;
 
-    public DonationController(DonationService donationService, CategoryService categoryService) {
+    public DonationController(DonationService donationService, CategoryService categoryService,
+                              InstitutionService institutionService) {
         this.donationService = donationService;
         this.categoryService = categoryService;
+        this.institutionService = institutionService;
     }
 
     @GetMapping("/create")
     public String prepareDonationFormView(Model model) {
         model.addAttribute("donations", new DonationDataDTO());
         model.addAttribute("categories", categoryService.findAllCategories());
+        model.addAttribute("institutions", institutionService.findAllInstitutions());
         return "donation/add-donation";
     }
 
