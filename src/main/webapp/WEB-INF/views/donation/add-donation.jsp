@@ -45,8 +45,7 @@
                                         <label>
                                                 <form:checkbox path="categories" value="${category}"/>
                                                 <span class="checkbox"></span>
-                                                <span class="description">${category.name}</span
-                                                >
+                                                <span class="description">${category.name}</span>
                                         </label>
                                 </div>
                                 </c:forEach>
@@ -200,6 +199,7 @@
                                         <button type="submit" class="btn">Potwierdzam</button>
                                 </div>
                         </div>
+                        <form:errors path="*"/>
                 </form:form>
         </div>
 </section>

@@ -14,8 +14,6 @@ import java.util.List;
 @Data
 public class DonationDataDTO {
 
-    @NotBlank
-    @Size(min = 1)
     private Long quantity;
     @NotBlank
     private String street;
@@ -23,14 +21,10 @@ public class DonationDataDTO {
     private String city;
     @NotBlank
     private String zipCode;
-    @NotBlank
     private LocalDate pickUpDate;
-    @NotBlank
     private LocalTime pickUpTime;
     private String pickUpComment;
-    @NotBlank
     private List<Category> categories = new ArrayList<>();
-    @NotBlank
     private Institution institution;
 
 }
