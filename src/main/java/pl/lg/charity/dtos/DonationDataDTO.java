@@ -1,6 +1,7 @@
 package pl.lg.charity.dtos;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.lg.charity.domain.entities.Category;
 import pl.lg.charity.domain.entities.Institution;
 
@@ -21,6 +22,7 @@ public class DonationDataDTO {
     private String city;
     @NotBlank
     private String zipCode;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;

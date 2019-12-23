@@ -46,4 +46,7 @@ public class Donation {
     private LocalTime pickUpTime;
     @Column(nullable = false)
     private String pickUpComment;
+
+    @ManyToOne
+    private User user;
 }
