@@ -17,6 +17,12 @@
     <h2>Załóż konto</h2>
     <form:form method="post" modelAttribute="registrationData">
         <div class="form-group">
+            <form:input path="username" name="username" placeholder="First Name" required="true"/>
+        </div>
+        <div class="form-group">
+            <form:input path="lastName" name="lastName" placeholder="Last Name" required="true"/>
+        </div>
+        <div class="form-group">
             <form:input path="email" name="email" placeholder="Email" required="true"/>
         </div>
         <div class="form-group">

@@ -5,4 +5,5 @@ import pl.lg.charity.domain.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findByUsername(String username);
 }

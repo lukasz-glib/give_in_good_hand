@@ -15,6 +15,7 @@
                 <li><a href="/admin/institutions" class="btn btn--small btn--without-border">Instytucje</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
+                <li>Witaj <sec:authentication property="principal.username"/> !</li>
                 <li>
                     <form method="post" action="/logout">
                         <button class="btn btn--small btn--without-border" type="submit">Wyloguj</button>

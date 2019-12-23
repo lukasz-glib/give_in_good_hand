@@ -10,6 +10,10 @@ import javax.validation.constraints.Size;
 @Data
 public class RegistrationDataDTO {
 
+    @NotBlank
+    private String username;
+    @NotBlank
+    private String lastName;
     @NotBlank @Email
     private String email;
     @NotBlank @Size(min = 4, max = 12)
