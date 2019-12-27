@@ -1,5 +1,6 @@
 package pl.lg.charity.services;
 
+import pl.lg.charity.domain.entities.Institution;
 import pl.lg.charity.dtos.InstitutionDataDTO;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface InstitutionService {
     void addInstitution(InstitutionDataDTO institutionData);
 
     void deleteInstitution(InstitutionDataDTO institutionData, Long id);
+
+    Institution prepareUpdateForInstitution(Long id);
 }

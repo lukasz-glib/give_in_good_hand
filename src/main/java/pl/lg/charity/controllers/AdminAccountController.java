@@ -72,4 +72,20 @@ public class AdminAccountController {
         return "redirect:/admin/institutions";
     }
 
+    @GetMapping("/institutions/update")
+    public String prepareUpdateForInstitution(Long id, Model model) {
+        model.addAttribute("institution", institutionService.prepareUpdateForInstitution(id));
+        return "institution/update-institution";
+    }
+
+    @PostMapping("/institutions/update")
+    public String processUpdateForInstitutions(@ModelAttribute("institution") @Valid InstitutionDataDTO
+                                                           institutionDataDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "institution/update-institution";
+        }
+        institutionService.addInstitution(institutionDataDTO);
+        return "redirect:/admin/institutions";
+    }
+
 }

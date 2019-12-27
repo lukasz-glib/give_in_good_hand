@@ -10,6 +10,7 @@ import pl.lg.charity.services.InstitutionService;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -53,5 +54,11 @@ public class DefaultInstitutionService implements InstitutionService {
             institutionRepository.delete(institution);
         }
         log.debug("Usunięto instytucję: {}", institution);
+    }
+
+    @Override
+    public Institution prepareUpdateForInstitution(Long id) {
+        Optional<Institution> institution = institutionRepository.findById(id);
+        return institution.get();
     }
 }
