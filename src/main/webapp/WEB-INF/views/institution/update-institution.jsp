@@ -21,12 +21,11 @@
             <div class="form-group form-group--inline">
                 <label> Nazwa <form:input path="name"/> </label>
             </div>
-
             <div class="form-group form-group--inline">
                 <label> Opis <form:textarea path="description"/> </label>
             </div>
             <div class="form-group form-group--buttons">
-                <button type="button" class="btn prev-step">Wstecz</button>
+                <li><a href="/admin/institutions" class="btn">Wstecz</a></li>
                 <button type="submit" class="btn">Edytuj</button>
             </div>
         </div>
