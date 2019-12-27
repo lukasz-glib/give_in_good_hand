@@ -13,10 +13,7 @@
 </head>
 <body>
 <jsp:include page="../media/header.jsp"/>
-
 <form:form method="post" modelAttribute="institution">
-    <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
-
     <div class="form-section form-section--columns">
         <div class="form-section--column">
             <h4>Podaj dane nowej instytucji:</h4>
@@ -35,7 +32,6 @@
     </div>
     <form:errors path="*"/>
 </form:form>
-
 <jsp:include page="../media/footer.jsp"/>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>

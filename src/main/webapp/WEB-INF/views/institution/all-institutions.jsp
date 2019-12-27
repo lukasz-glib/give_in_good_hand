@@ -13,9 +13,6 @@
 </head>
 <body>
 <jsp:include page="../media/header.jsp"/>
-
-<h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
-
 <div class="form-section form-section--columns">
     <div class="form-section--column">
         <table>
@@ -38,15 +35,13 @@
                         </c:url>
                         <li><a href="${deleteURL}" class="btn btn--without-border">Usuń</a></li>
                         <li><a href="${updateURL}" class="btn btn--without-border">Edytuj</a></li>
-                    </td>
+                    </td><br/>
                 </c:forEach>
                 <li><a href="/admin/institutions/create" class="btn btn--without-border">Dodaj nową instytucję</a></li>
             </>
         </table>
-
     </div>
 </div>
-
 <jsp:include page="../media/footer.jsp"/>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
