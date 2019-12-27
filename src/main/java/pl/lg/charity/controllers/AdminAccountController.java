@@ -2,7 +2,10 @@ package pl.lg.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
@@ -11,6 +14,7 @@ import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
 import pl.lg.charity.services.RegistrationService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -49,6 +53,22 @@ public class AdminAccountController {
     @GetMapping("/institutions/delete")
     public String processDeleteInstitution(InstitutionDataDTO institutionData, Long id) {
         institutionService.deleteInstitution(institutionData, id);
+        return "redirect:/admin/institutions";
+    }
+
+    @GetMapping("/institutions/create")
+    public String prepareCreationInstitutionForm(Model model) {
+        model.addAttribute("institution", new InstitutionDataDTO());
+        return "institution/add-institution";
+    }
+
+    @PostMapping("/institutions/create")
+    public String processCreationInstitutionForm(@ModelAttribute("institution") @Valid InstitutionDataDTO
+                                                 institutionData, BindingResult result) {
+        if (result.hasErrors()) {
+            return "institution/add-institution";
+        }
+        institutionService.addInstitution(institutionData);
         return "redirect:/admin/institutions";
     }
 
