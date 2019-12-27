@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
+import pl.lg.charity.dtos.InstitutionDataDTO;
 import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
 import pl.lg.charity.services.RegistrationService;
@@ -37,6 +38,18 @@ public class AdminAccountController {
         model.addAttribute("allBags", donationService.findSumOfAllDonations());
         model.addAttribute("numberInstitutions", institutionService.numberOfAllInstitutions());
         return "admin/admin-account";
+    }
+
+    @GetMapping("/institutions")
+    public String getInstitutionsPage(Model model) {
+        model.addAttribute("allInstitutionsManagement", institutionService.findAllInstitutions());
+        return "institution/all-institutions";
+    }
+
+    @GetMapping("/institutions/delete")
+    public String processDeleteInstitution(InstitutionDataDTO institutionData, Long id) {
+        institutionService.deleteInstitution(institutionData, id);
+        return "redirect:/admin/institutions";
     }
 
 }

@@ -44,4 +44,14 @@ public class DefaultInstitutionService implements InstitutionService {
         Institution institution = modelMapper.map(institutionData, Institution.class);
         institutionRepository.save(institution);
     }
+
+    @Override
+    public void deleteInstitution(InstitutionDataDTO institutionData, Long id) {
+        Institution institution = institutionRepository.findById(id).get();
+        log.debug("Usunięcie instytucji: {}", institution);
+        if (institution != null) {
+            institutionRepository.delete(institution);
+        }
+        log.debug("Usunięto instytucję: {}", institution);
+    }
 }

@@ -11,4 +11,6 @@ public interface InstitutionService {
     Integer numberOfAllInstitutions();
 
     void addInstitution(InstitutionDataDTO institutionData);
+
+    void deleteInstitution(InstitutionDataDTO institutionData, Long id);
 }

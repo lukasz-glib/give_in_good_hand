@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 @Data
 public class InstitutionDataDTO {
 
+    private Long id;
     @NotBlank
     @Size(max = 60)
     private String name;
