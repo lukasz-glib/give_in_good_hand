@@ -3,7 +3,8 @@ package pl.lg.charity.services.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import pl.lg.charity.domain.repositories.InstitutionRepositories;
+import pl.lg.charity.domain.entities.Institution;
+import pl.lg.charity.domain.repositories.InstitutionRepository;
 import pl.lg.charity.dtos.InstitutionDataDTO;
 import pl.lg.charity.services.InstitutionService;
 
@@ -18,22 +19,29 @@ import java.util.stream.Collectors;
 public class DefaultInstitutionService implements InstitutionService {
 
 
-    private final InstitutionRepositories institutionRepositories;
+    private final InstitutionRepository institutionRepository;
 
-    public DefaultInstitutionService(InstitutionRepositories institutionRepositories) {
-        this.institutionRepositories = institutionRepositories;
+    public DefaultInstitutionService(InstitutionRepository institutionRepositories) {
+        this.institutionRepository = institutionRepositories;
     }
 
     @Override
     public List<InstitutionDataDTO> findAllInstitutions() {
         ModelMapper modelMapperFindAll = new ModelMapper();
-        return institutionRepositories.findAll().stream()
+        return institutionRepository.findAll().stream()
                 .map(m -> modelMapperFindAll.map(m, InstitutionDataDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Integer numberOfAllInstitutions() {
-        return institutionRepositories.numberOfAllInstitutions();
+        return institutionRepository.numberOfAllInstitutions();
+    }
+
+    @Override
+    public void addInstitution(InstitutionDataDTO institutionData) {
+        ModelMapper modelMapper = new ModelMapper();
+        Institution institution = modelMapper.map(institutionData, Institution.class);
+        institutionRepository.save(institution);
     }
 }
