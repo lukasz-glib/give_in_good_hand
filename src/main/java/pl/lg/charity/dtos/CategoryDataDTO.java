@@ -11,4 +11,5 @@ public class CategoryDataDTO {
     @NotBlank
     @Size(max = 60)
     private String name;
+    private Long id;
 }
