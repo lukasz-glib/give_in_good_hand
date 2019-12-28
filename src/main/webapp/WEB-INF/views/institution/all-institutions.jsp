@@ -35,10 +35,10 @@
                         </c:url>
                         <li><a href="${deleteURL}" class="btn btn--without-border">Usuń</a></li>
                         <li><a href="${updateURL}" class="btn btn--without-border">Edytuj</a></li>
-                    </td><br/>
+                    </td>
                 </c:forEach>
                 <li><a href="/admin/institutions/create" class="btn btn--without-border">Dodaj nową instytucję</a></li>
-            </>
+            </tr>
         </table>
     </div>
 </div>
