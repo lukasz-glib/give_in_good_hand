@@ -109,5 +109,20 @@ public class AdminAccountController {
         return "redirect:/admin/admins";
     }
 
+    @GetMapping("/admins/create")
+    public String prepareCreationAdminAccount(Model model) {
+        model.addAttribute("registrationAdmin", new RegistrationDataDTO());
+        return "admin/add-admin";
+    }
+
+    @PostMapping("/admins/create")
+    public String processCreationAdminAccount(@ModelAttribute("registrationAdmin") @Valid RegistrationDataDTO dataDTO,
+                                              BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/add-admins";
+        }
+        registrationService.registerAdmin(dataDTO);
+        return "redirect:/admin/admins";
+    }
 
 }
