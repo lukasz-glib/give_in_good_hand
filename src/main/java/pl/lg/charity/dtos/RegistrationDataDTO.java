@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 public class RegistrationDataDTO {
 
+    private Long id;
     @NotBlank
     private String username;
     @NotBlank

@@ -12,6 +12,8 @@ import pl.lg.charity.dtos.RegistrationDataDTO;
 import pl.lg.charity.services.RegistrationService;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -39,5 +41,13 @@ public class DefaultRegistrationService implements RegistrationService {
         Role roleUser = roleRepository.getByName("ROLE_USER");
         user.getRoles().add(roleUser);
         userRepository.save(user);
+    }
+
+    @Override
+    public List<RegistrationDataDTO> findAllAdmins() {
+        ModelMapper modelMapperFindAllAdmins = new ModelMapper();
+        return userRepository.findAllAdmins().stream()
+                .map(m -> modelMapperFindAllAdmins.map(m, RegistrationDataDTO.class))
+                .collect(Collectors.toList());
     }
 }

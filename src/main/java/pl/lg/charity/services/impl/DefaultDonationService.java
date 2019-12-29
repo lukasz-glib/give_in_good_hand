@@ -32,5 +32,4 @@ public class DefaultDonationService implements DonationService {
         donationRepository.save(donation);
     }
 
-
 }

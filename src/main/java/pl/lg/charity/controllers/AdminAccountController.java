@@ -44,6 +44,10 @@ public class AdminAccountController {
         return "admin/admin-account";
     }
 
+    /**
+     Institutions management
+     */
+
     @GetMapping("/institutions")
     public String getInstitutionsPage(Model model) {
         model.addAttribute("allInstitutionsManagement", institutionService.findAllInstitutions());
@@ -88,4 +92,13 @@ public class AdminAccountController {
         return "redirect:/admin/institutions";
     }
 
+    /**
+     Administrators management
+     */
+
+    @GetMapping("/admins")
+    public String getAdministratorsPage(Model model) {
+        model.addAttribute("allAdminsManagement", registrationService.findAllAdmins());
+        return "admin/all-admins";
+    }
 }
