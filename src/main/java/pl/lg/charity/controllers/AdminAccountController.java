@@ -105,7 +105,7 @@ public class AdminAccountController {
 
     @GetMapping("admins/delete")
     public String processDeleteAdmin(RegistrationDataDTO registrationData, Long id) {
-        registrationService.deleteAdmin(registrationData, id);
+        registrationService.deleteAdminOrUser(registrationData, id);
         return "redirect:/admin/admins";
     }
 
@@ -149,5 +149,11 @@ public class AdminAccountController {
     public String getUsersPage(Model model) {
         model.addAttribute("allUsersManagement", registrationService.findAllUsers());
         return "user/all-users";
+    }
+
+    @GetMapping("users/delete")
+    public String processDeleteUser(RegistrationDataDTO registrationData, Long id) {
+        registrationService.deleteAdminOrUser(registrationData, id);
+        return "redirect:/admin/users";
     }
 }

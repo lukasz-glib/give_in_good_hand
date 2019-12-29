@@ -72,13 +72,13 @@ public class DefaultRegistrationService implements RegistrationService {
     }
 
     @Override
-    public void deleteAdmin(RegistrationDataDTO registrationData, Long id) {
+    public void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id) {
         User user = userRepository.findById(id).get();
-        log.debug("Usunięcie admina: {}", user);
+        log.debug("Usunięcie admina (użytkownika): {}", user);
         if (user != null) {
             userRepository.delete(user);
         }
-        log.debug("Admin został usunięty: {}", user);
+        log.debug("Admin (Użytkownik) został usunięty: {}", user);
     }
 
     @Override
