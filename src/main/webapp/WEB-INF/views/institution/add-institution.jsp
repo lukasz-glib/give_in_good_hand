@@ -18,11 +18,12 @@
         <div class="form-section--column">
             <h4>Podaj dane nowej instytucji:</h4>
             <div class="form-group form-group--inline">
-                <label> Nazwa <form:input path="name"/> </label>
+                <label> Nazwa <form:input path="name" required="true"/> </label>
             </div>
 
             <div class="form-group form-group--inline">
-                <label> Opis <form:textarea path="description"/> </label>
+                <label> Opis <form:textarea style="margin: 0px; width: 450px; height: 200px"
+                                            path="description" required="true"/> </label>
             </div>
             <div class="form-group form-group--buttons">
                 <a href="/admin/institutions" class="btn">Wstecz</a>
