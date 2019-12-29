@@ -9,4 +9,6 @@ public interface RegistrationService {
     void register (RegistrationDataDTO registrationDataDTO);
 
     List<RegistrationDataDTO> findAllAdmins();
+
+    void deleteAdmin(RegistrationDataDTO registrationData, Long id);
 }

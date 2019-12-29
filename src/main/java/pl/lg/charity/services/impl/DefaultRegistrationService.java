@@ -50,4 +50,14 @@ public class DefaultRegistrationService implements RegistrationService {
                 .map(m -> modelMapperFindAllAdmins.map(m, RegistrationDataDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteAdmin(RegistrationDataDTO registrationData, Long id) {
+        User user = userRepository.findById(id).get();
+        log.debug("Usunięcie admina: {}", user);
+        if (user != null) {
+            userRepository.delete(user);
+        }
+        log.debug("Admin został usunięty: {}", user);
+    }
 }
