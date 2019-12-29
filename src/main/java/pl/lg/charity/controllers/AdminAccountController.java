@@ -156,4 +156,20 @@ public class AdminAccountController {
         registrationService.deleteAdminOrUser(registrationData, id);
         return "redirect:/admin/users";
     }
+
+    @GetMapping("/users/update")
+    public String prepareUpdateUserAccount(Model model, Long id) {
+        model.addAttribute("updateUser", registrationService.prepareUpdateForUserDataAccount(id));
+        return "user/update-user";
+    }
+
+    @PostMapping("/users/update")
+    public String processUpdateUserAccount(@ModelAttribute("updateUser") @Valid RegistrationDataDTO dataDTO,
+                                           BindingResult result) {
+        if (result.hasErrors()) {
+            return "users/update-user";
+        }
+        registrationService.register(dataDTO);
+        return "redirect:/admin/users";
+    }
 }

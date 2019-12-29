@@ -16,4 +16,6 @@ public interface RegistrationService {
     void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id);
 
     RegistrationDataDTO prepareUpdateForAdminDataAccount(Long id);
+
+    RegistrationDataDTO prepareUpdateForUserDataAccount(Long id);
 }

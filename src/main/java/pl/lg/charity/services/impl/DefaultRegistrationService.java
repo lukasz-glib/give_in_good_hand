@@ -87,4 +87,11 @@ public class DefaultRegistrationService implements RegistrationService {
         ModelMapper model = new ModelMapper();
         return model.map(admins, RegistrationDataDTO.class);
     }
+
+    @Override
+    public RegistrationDataDTO prepareUpdateForUserDataAccount(Long id) {
+        User users = userRepository.findById(id).get();
+        ModelMapper model = new ModelMapper();
+        return model.map(users, RegistrationDataDTO.class);
+    }
 }
