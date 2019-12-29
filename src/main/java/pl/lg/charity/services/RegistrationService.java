@@ -18,4 +18,8 @@ public interface RegistrationService {
     RegistrationDataDTO prepareUpdateForAdminDataAccount(Long id);
 
     RegistrationDataDTO prepareUpdateForUserDataAccount(Long id);
+
+    void lockUser(Long id);
+
+    void unlockUser(Long id);
 }

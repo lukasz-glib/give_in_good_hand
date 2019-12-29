@@ -172,4 +172,16 @@ public class AdminAccountController {
         registrationService.register(dataDTO);
         return "redirect:/admin/users";
     }
+
+    @GetMapping("users/unlock")
+    public String statusActiveUser(Long id) {
+        registrationService.unlockUser(id);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("users/lock")
+    public String statusBlockedUser(Long id) {
+        registrationService.lockUser(id);
+        return "redirect:/admin/users";
+    }
 }

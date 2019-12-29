@@ -94,4 +94,14 @@ public class DefaultRegistrationService implements RegistrationService {
         ModelMapper model = new ModelMapper();
         return model.map(users, RegistrationDataDTO.class);
     }
+
+    @Override
+    public void unlockUser(Long id) {
+        userRepository.statusActiveUser(id);
+    }
+
+    @Override
+    public void lockUser(Long id) {
+        userRepository.statusBlockedUser(id);
+    }
 }
