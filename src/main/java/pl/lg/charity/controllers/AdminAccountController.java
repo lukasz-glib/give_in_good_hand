@@ -36,8 +36,8 @@ public class AdminAccountController {
 
     @GetMapping
     public String prepareAccountPage(Principal principal, Model model) {
-        String adminname = principal.getName();
-        User loggedUser = userRepository.findByUsername(adminname);
+        String adminName = principal.getName();
+        User loggedUser = userRepository.findByUsername(adminName);
         model.addAttribute("adminAccount", loggedUser);
         model.addAttribute("allInstitutions", institutionService.findAllInstitutions());
         model.addAttribute("allBags", donationService.findSumOfAllDonations());
@@ -139,5 +139,15 @@ public class AdminAccountController {
         }
         registrationService.registerAdmin(dataDTO);
         return "redirect:/admin/admins";
+    }
+
+    /**
+     Users management
+     */
+
+    @GetMapping("/users")
+    public String getUsersPage(Model model) {
+        model.addAttribute("allUsersManagement", registrationService.findAllUsers());
+        return "user/all-users";
     }
 }

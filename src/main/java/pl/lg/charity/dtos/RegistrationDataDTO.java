@@ -21,4 +21,5 @@ public class RegistrationDataDTO {
     private String password;
     @NotBlank @Size(min = 4, max = 12)
     private String repassword;
+    private Boolean active;
 }

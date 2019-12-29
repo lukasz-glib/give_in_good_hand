@@ -11,6 +11,8 @@ public interface RegistrationService {
 
     List<RegistrationDataDTO> findAllAdmins();
 
+    List<RegistrationDataDTO> findAllUsers();
+
     void deleteAdmin(RegistrationDataDTO registrationData, Long id);
 
     RegistrationDataDTO prepareUpdateForAdminDataAccount(Long id);
