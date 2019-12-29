@@ -125,4 +125,19 @@ public class AdminAccountController {
         return "redirect:/admin/admins";
     }
 
+    @GetMapping("/admins/update")
+    public String prepareUpdateAdminAccount(Model model, Long id) {
+        model.addAttribute("updateAdmin", registrationService.prepareUpdateForAdminDataAccount(id));
+        return "admin/update-admin";
+    }
+
+    @PostMapping("/admins/update")
+    public String processUpdateAdminAccount(@ModelAttribute("updateAdmin") @Valid RegistrationDataDTO dataDTO,
+                                            BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/update-admin";
+        }
+        registrationService.registerAdmin(dataDTO);
+        return "redirect:/admin/admins";
+    }
 }

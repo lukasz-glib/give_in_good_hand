@@ -72,4 +72,11 @@ public class DefaultRegistrationService implements RegistrationService {
         }
         log.debug("Admin został usunięty: {}", user);
     }
+
+    @Override
+    public RegistrationDataDTO prepareUpdateForAdminDataAccount(Long id) {
+        User admins = userRepository.findById(id).get();
+        ModelMapper model = new ModelMapper();
+        return model.map(admins, RegistrationDataDTO.class);
+    }
 }
