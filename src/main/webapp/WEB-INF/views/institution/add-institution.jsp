@@ -25,7 +25,7 @@
                 <label> Opis <form:textarea path="description"/> </label>
             </div>
             <div class="form-group form-group--buttons">
-                <li><a href="/admin/institutions" class="btn">Wstecz</a></li>
+                <a href="/admin/institutions" class="btn">Wstecz</a>
                 <button type="submit" class="btn">Dodaj</button>
             </div>
         </div>

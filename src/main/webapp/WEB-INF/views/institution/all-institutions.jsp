@@ -13,35 +13,35 @@
 </head>
 <body>
 <jsp:include page="../media/header.jsp"/>
-<div class="form-section form-section--columns">
-    <div class="form-section--column">
-        <table>
+<a href="/admin/institutions/create" class="btn btn--without-border" style="text-align: center">
+    Dodaj nową instytucję</a>
+    <div class="container--90">
+        <table id="tabAdmin">
             <tr class="form-group form-group--inline">
                 <th>Lp.</th>
                 <th>Nazwa organizacji</th>
                 <th>Opis organizacji</th>
+                <th>Akcja</th>
             </tr>
-            <tr class="form-group form-group--inline">
-                <c:forEach items="${allInstitutionsManagement}" var="institution" varStatus="stat">
-                    <td>${stat.count}</td>
-                    <td>${institution.name}</td>
-                    <td>${institution.description}</td>
-                    <td>
-                        <c:url value="/admin/institutions/delete" var="deleteURL">
-                            <c:param name="id" value="${institution.id}"/>
-                        </c:url>
-                        <c:url value="/admin/institutions/update" var="updateURL">
-                            <c:param name="id" value="${institution.id}"/>
-                        </c:url>
-                        <li><a href="${deleteURL}" class="btn btn--without-border">Usuń</a></li>
-                        <li><a href="${updateURL}" class="btn btn--without-border">Edytuj</a></li>
-                    </td>
-                </c:forEach>
-                <li><a href="/admin/institutions/create" class="btn btn--without-border">Dodaj nową instytucję</a></li>
+            <c:forEach items="${allInstitutionsManagement}" var="institution" varStatus="stat">
+            <tr class="form-group text-area">
+                <td>${stat.count}</td>
+                <td>${institution.name}</td>
+                <td>${institution.description}</td>
+                <td>
+                    <c:url value="/admin/institutions/delete" var="deleteURL">
+                        <c:param name="id" value="${institution.id}"/>
+                    </c:url>
+                    <c:url value="/admin/institutions/update" var="updateURL">
+                        <c:param name="id" value="${institution.id}"/>
+                    </c:url>
+                    <a href="${deleteURL}" class="btn btn--without-border">Usuń</a>
+                    <a href="${updateURL}" class="btn btn--without-border">Edytuj</a>
+                </td>
             </tr>
+            </c:forEach>
         </table>
     </div>
-</div>
 <jsp:include page="../media/footer.jsp"/>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
