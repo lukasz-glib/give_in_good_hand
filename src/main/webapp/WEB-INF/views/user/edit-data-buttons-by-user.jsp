@@ -13,8 +13,8 @@
 <body>
 <jsp:include page="../media/header.jsp"/>
     <section>
-        <a href="/user/changeData" class="btn btn--large" style="text-align: center;">Zmiana danych</a>
-        <a href="/user/changePassword" class="btn btn--large" style="text-align: center;">Zmiana hasła</a>
+        <a href="/user/edit/changeData" class="btn btn--large" style="text-align: center">Zmiana danych</a>
+        <a href="/user/edit/changePassword" class="btn btn--large" style="text-align: center">Zmiana hasła</a>
     </section>
 <jsp:include page="../media/footer.jsp"/>
 </body>
