@@ -14,6 +14,9 @@
                 <li><a href="/admin/users" class="btn btn--small btn--without-border">Użytkownicy</a></li>
                 <li><a href="/admin/institutions" class="btn btn--small btn--without-border">Instytucje</a></li>
             </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
+                <li><a href="/user/edit" class="btn btn--small btn--without-border">Edycja danych</a></li>
+            </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li>Witaj <sec:authentication property="principal.username"/> !</li>
                 <li>
@@ -28,7 +31,9 @@
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="#" class="btn btn--without-border">O nas</a></li>
+            <sec:authorize access="isAuthenticated()">
             <li><a href="/donation/create" class="btn btn--without-border">Przekaż dary</a></li>
+            </sec:authorize>
             <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
         </ul>
