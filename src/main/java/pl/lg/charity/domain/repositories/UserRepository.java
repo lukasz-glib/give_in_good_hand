@@ -12,6 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
+    User findUserByEmail(String email);
+
     @Query(value = "SELECT * FROM users JOIN users_roles ON users.id = users_roles.user_id " +
             "WHERE users_roles.roles_id = 2", nativeQuery = true)
     List<User> findAllAdmins();
@@ -29,4 +31,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Query(value = "UPDATE User u SET u.active = false WHERE u.id = ?1")
     void statusBlockedUser(Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE User u SET u.email = ?1, u.username = ?2, u.lastName = ?3 WHERE u.id = ?4")
+    void editUserData(String email, String username, String lastName, Long id);
 }
