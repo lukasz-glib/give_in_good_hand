@@ -36,4 +36,9 @@ public class UserAccountController {
         model.addAttribute("numberInstitutions", institutionService.numberOfAllInstitutions());
         return "user/account";
     }
+
+    @GetMapping("/edit")
+    public String prepareUserDataEditPage() {
+        return "user/edit-data-by-user";
+    }
 }
