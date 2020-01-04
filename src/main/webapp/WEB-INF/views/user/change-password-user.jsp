@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -16,15 +15,18 @@
 <jsp:include page="../media/header.jsp"/>
 <section class="login-page">
     <h2>Zmiana hasła Użytkownika</h2>
-    <form method="post">
+    <form:form method="post" modelAttribute="editPasswordLoggedUser">
         <div class="form-group">
-            <input type="password" name="password" placeholder="Podaj nowe hasło"/>
+            <form:password showPassword="false" path="password" placeholder="Podaj nowe hasło" required="true"/>
+        </div>
+        <div class="form-group">
+            <form:password showPassword="false" path="repassword" placeholder="Powtórz nowe hasło" required="true"/>
         </div>
         <div class="form-group form-group--buttons">
-            <button class="btn" type="submit">Zmień hasło</button>
+            <a href="/user/edit" class="btn btn">Wstecz</a>
+            <button class="btn" type="submit">Edytuj hasło Użytkownika</button>
         </div>
-        <sec:csrfInput/>
-    </form>
+    </form:form>
 </section>
 <jsp:include page="../media/footer.jsp"/>
 </body>
