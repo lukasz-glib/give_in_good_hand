@@ -66,6 +66,18 @@ public class UserAccountController {
             return "user/change-data-user";
         }
         userService.processEditDataUser(dataDTO, principal, req);
-        return "/login";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/edit/changePassword")
+    public String prepareEditPasswordUserPage() {
+        return "user/change-password-user";
+    }
+
+    @PostMapping("/edit/changePassword")
+    public String processEditPasswordUserPage(String password, Principal principal, HttpServletRequest req)
+                                              throws ServletException {
+        userService.processEditPasswordUser(password, principal, req);
+        return "redirect:/login";
     }
 }
