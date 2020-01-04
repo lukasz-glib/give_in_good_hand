@@ -17,9 +17,7 @@ public class RegistrationDataDTO {
     private String lastName;
     @NotBlank @Email
     private String email;
-    @NotBlank @Size(min = 4, max = 12)
     private String password;
-    @NotBlank @Size(min = 4, max = 12)
     private String repassword;
     private Boolean active;
 }
