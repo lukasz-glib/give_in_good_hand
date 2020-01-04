@@ -34,8 +34,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE User u SET u.email = ?1, u.username = ?2, u.lastName = ?3 WHERE u.id = ?4")
-    void editUserData(String email, String username, String lastName, Long id);
+    @Query(value = "UPDATE User u SET u.email = ?1, u.username = ?2, u.lastName = ?3, u.password = ?4 WHERE u.id = ?5")
+    void editUserData(String email, String username, String lastName, String password, Long id);
 
     @Modifying
     @Transactional

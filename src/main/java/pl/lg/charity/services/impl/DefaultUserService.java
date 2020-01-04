@@ -40,7 +40,8 @@ public class DefaultUserService implements UserService {
         User editDataLoggedUser = userRepository.findUserByEmail(principal.getName());
         ModelMapper model = new ModelMapper();
         userRepository.editUserData(model.map(dataDTO, User.class).getEmail(), model.map(dataDTO, User.class).getUsername(),
-                model.map(dataDTO, User.class).getLastName(), editDataLoggedUser.getId());
+                model.map(dataDTO, User.class).getLastName(), passwordEncoder.encode(model.map(dataDTO, User.class).getPassword()),
+                editDataLoggedUser.getId());
         req.logout();
     }
 
