@@ -70,14 +70,15 @@ public class UserAccountController {
     }
 
     @GetMapping("/edit/changePassword")
-    public String prepareEditPasswordUserPage() {
+    public String prepareEditPasswordUserPage(Principal principal, Model model) {
+        model.addAttribute("editPasswordLoggedUser", userService.prepareEditPasswordUser(principal));
         return "user/change-password-user";
     }
 
     @PostMapping("/edit/changePassword")
-    public String processEditPasswordUserPage(String password, Principal principal, HttpServletRequest req)
+    public String processEditPasswordUserPage(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
                                               throws ServletException {
-        userService.processEditPasswordUser(password, principal, req);
+        userService.processEditPasswordUser(dataDTO, principal, req);
         return "redirect:/login";
     }
 }
