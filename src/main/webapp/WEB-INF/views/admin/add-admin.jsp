@@ -26,10 +26,10 @@
             <form:input path="email" name="email" placeholder="Email" required="true"/>
         </div>
         <div class="form-group">
-            <form:input path="password" name="password" placeholder="Hasło" required="true"/>
+            <form:password showPassword="true" path="password" name="password" placeholder="Hasło" required="true"/>
         </div>
         <div class="form-group">
-            <form:input path="repassword" name="password2" placeholder="Powtórz hasło" required="true"/>
+            <form:password showPassword="true" path="repassword" name="password2" placeholder="Powtórz hasło" required="true"/>
         </div>
 
         <div class="form-group form-group--buttons">
