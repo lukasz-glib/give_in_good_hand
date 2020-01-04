@@ -7,6 +7,7 @@ import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.RegistrationDataDTO;
 import pl.lg.charity.services.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,11 @@ import java.security.Principal;
 public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DefaultUserService(UserRepository userRepository) {
+    public DefaultUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -34,11 +37,20 @@ public class DefaultUserService implements UserService {
     @Override
     public void processEditDataUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException {
-        User editDataLoggedUser = userRepository.findByUsername(principal.getName());
-        editDataLoggedUser.getId();
+        User editDataLoggedUser = userRepository.findUserByEmail(principal.getName());
         ModelMapper model = new ModelMapper();
         userRepository.editUserData(model.map(dataDTO, User.class).getEmail(), model.map(dataDTO, User.class).getUsername(),
                 model.map(dataDTO, User.class).getLastName(), editDataLoggedUser.getId());
         req.logout();
     }
+
+    @Override
+    public void processEditPasswordUser(String password, Principal principal, HttpServletRequest req)
+            throws ServletException {
+        String email = principal.getName();
+        userRepository.editUserPassword(email, passwordEncoder.encode(password));
+        req.logout();
+    }
+
+
 }
