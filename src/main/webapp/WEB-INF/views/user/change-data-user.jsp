@@ -25,6 +25,12 @@
         <div class="form-group">
             <form:input path="email" name="email" placeholder="Nowy email" required="true"/>
         </div>
+<%--        <div class="form-group">--%>
+<%--            <form:input path="password" name="password" placeholder="Nowe hasło" required="true"/>--%>
+<%--        </div>--%>
+<%--        <div class="form-group">--%>
+<%--            <form:input path="repassword" name="password2" placeholder="Powtórz nowe hasło" required="true"/>--%>
+<%--        </div>--%>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Edytuj dane Użytkownika</button>
         </div>
