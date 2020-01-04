@@ -38,20 +38,26 @@ public class DefaultUserService implements UserService {
     public void processEditDataUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException {
         User editDataLoggedUser = userRepository.findUserByEmail(principal.getName());
-        ModelMapper model = new ModelMapper();
-        userRepository.editUserData(model.map(dataDTO, User.class).getEmail(), model.map(dataDTO, User.class).getUsername(),
-                model.map(dataDTO, User.class).getLastName(), passwordEncoder.encode(model.map(dataDTO, User.class).getPassword()),
-                editDataLoggedUser.getId());
+        editDataLoggedUser.setEmail(dataDTO.getEmail());
+        editDataLoggedUser.setUsername(dataDTO.getUsername());
+        editDataLoggedUser.setLastName(dataDTO.getLastName());
+        userRepository.save(editDataLoggedUser);
         req.logout();
     }
 
     @Override
-    public void processEditPasswordUser(String password, Principal principal, HttpServletRequest req)
-            throws ServletException {
-        String email = principal.getName();
-        userRepository.editUserPassword(email, passwordEncoder.encode(password));
-        req.logout();
+    public RegistrationDataDTO prepareEditPasswordUser(Principal principal) {
+        User showPasswordLoggedUser = userRepository.findUserByEmail(principal.getName());
+        ModelMapper model = new ModelMapper();
+        return model.map(showPasswordLoggedUser, RegistrationDataDTO.class);
     }
 
+    @Override
+    public void processEditPasswordUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
+            throws ServletException {
+        User editPasswordLoggedUser = userRepository.findUserByEmail(principal.getName());
+        editPasswordLoggedUser.setPassword(passwordEncoder.encode(dataDTO.getPassword()));
+        req.logout();
+    }
 
 }

@@ -13,6 +13,8 @@ public interface UserService {
     void processEditDataUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException;
 
-    void processEditPasswordUser(String password, Principal principal, HttpServletRequest req)
+    RegistrationDataDTO prepareEditPasswordUser(Principal principal);
+
+    void processEditPasswordUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException;
 }
