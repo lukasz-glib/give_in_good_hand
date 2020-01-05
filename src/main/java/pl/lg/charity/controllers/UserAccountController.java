@@ -95,5 +95,4 @@ public class UserAccountController {
         model.addAttribute("allUserDonations", donationService.getOwnDonationsForUser(principal));
         return "user/all-user-donations";
     }
-
 }

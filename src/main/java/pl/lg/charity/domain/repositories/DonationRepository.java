@@ -12,9 +12,5 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query(value = "SELECT SUM(quantity) FROM charity_donation.donations;", nativeQuery = true)
     Integer sumOfQuantities();
 
-    @Query(value = "SELECT * FROM charity_donation.donations WHERE user_id = ? ORDER BY pick_up_date DESC;",
-            nativeQuery = true)
-    List<Donation> findAllOrderedDonationsForUser(Long id);
-
     List<Donation> findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(User user);
 }

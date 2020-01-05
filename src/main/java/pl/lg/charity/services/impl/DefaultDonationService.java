@@ -46,12 +46,6 @@ public class DefaultDonationService implements DonationService {
     }
 
     @Override
-    public List<Donation> findAllOrderedDonationsForUser(Principal principal) {
-        User user = userRepository.findUserByEmail(principal.getName());
-        return donationRepository.findAllOrderedDonationsForUser(user.getId());
-    }
-
-    @Override
     public List<Donation> getOwnDonationsForUser(Principal principal) {
         return donationRepository.findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(userRepository
                 .findByEmail(principal.getName()));
