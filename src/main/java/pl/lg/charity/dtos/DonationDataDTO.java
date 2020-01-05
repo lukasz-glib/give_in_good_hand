@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.lg.charity.domain.entities.Category;
 import pl.lg.charity.domain.entities.Institution;
+import pl.lg.charity.domain.entities.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

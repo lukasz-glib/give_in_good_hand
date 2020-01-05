@@ -13,4 +13,6 @@ public interface DonationService {
     void addDonation(DonationDataDTO dataDTO);
 
     List<Donation>findAllOrderedDonationsForUser(Principal principal);
+
+    List<Donation>getOwnDonationsForUser(Principal principal);
 }

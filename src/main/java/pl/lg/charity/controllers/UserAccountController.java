@@ -92,7 +92,8 @@ public class UserAccountController {
 
     @GetMapping("/myDonations")
     public String getUserDonationsPage(Model model, Principal principal) {
-        model.addAttribute("allUserDonations", donationService.findAllOrderedDonationsForUser(principal));
+        model.addAttribute("allUserDonations", donationService.getOwnDonationsForUser(principal));
         return "user/all-user-donations";
     }
+
 }

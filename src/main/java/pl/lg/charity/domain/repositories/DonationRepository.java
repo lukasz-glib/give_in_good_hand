@@ -1,11 +1,10 @@
 package pl.lg.charity.domain.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import pl.lg.charity.domain.entities.Donation;
+import pl.lg.charity.domain.entities.User;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
@@ -17,4 +16,5 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
             nativeQuery = true)
     List<Donation> findAllOrderedDonationsForUser(Long id);
 
+    List<Donation> findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(User user);
 }
