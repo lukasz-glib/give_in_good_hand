@@ -15,6 +15,9 @@
                 <li><a href="/admin/institutions" class="btn btn--small btn--without-border">Instytucje</a></li>
             </sec:authorize>
             <sec:authorize access="hasRole('USER')">
+                <li><a href="/user/myDonations" class="btn btn--small btn--without-border">Moje dary</a></li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
                 <li><a href="/user/edit" class="btn btn--small btn--without-border">Edycja danych</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">

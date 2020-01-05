@@ -23,25 +23,25 @@
             <th>Status Użytkownika</th>
             <th>Akcja</th>
         </tr>
-        <c:forEach items="${allUsersManagement}" var="user" varStatus="stat">
+        <c:forEach items="${allUsersManagement}" var="donation" varStatus="stat">
             <tr class="form-group text-area">
                 <td>${stat.count}</td>
-                <td>${user.email}</td>
-                <td>${user.username}</td>
-                <td>${user.lastName}</td>
-                <td>${user.active}</td>
+                <td>${donation.email}</td>
+                <td>${donation.username}</td>
+                <td>${donation.lastName}</td>
+                <td>${donation.active}</td>
                 <td>
                     <c:url value="/admin/users/delete" var="deleteURL">
-                        <c:param name="id" value="${user.id}"/>
+                        <c:param name="id" value="${donation.id}"/>
                     </c:url>
                     <c:url value="/admin/users/lock" var="lockURL">
-                        <c:param name="id" value="${user.id}"/>
+                        <c:param name="id" value="${donation.id}"/>
                     </c:url>
                     <c:url value="/admin/users/unlock" var="unlockURL">
-                        <c:param name="id" value="${user.id}"/>
+                        <c:param name="id" value="${donation.id}"/>
                     </c:url>
                     <c:url value="/admin/users/update" var="updateURL">
-                        <c:param name="id" value="${user.id}"/>
+                        <c:param name="id" value="${donation.id}"/>
                     </c:url>
                     <a href="${deleteURL}" class="btn btn--without-border">Usuń</a>
                     <a href="${lockURL}" class="btn btn--without-border">Zablokuj</a>
