@@ -15,7 +15,7 @@
         </form>
     </div>
     <div class="bottom-line">
-        <span class="bottom-line--copy">Copyright &copy; lukasz-glib 2019</span>
+        <span class="bottom-line--copy">Copyright &copy; lukasz-glib 2020</span>
         <div class="bottom-line--icons">
             <a href="https://www.facebook.com/" class="btn btn--small">
                 <img src="/resources/images/icon-facebook.svg"/></a>
