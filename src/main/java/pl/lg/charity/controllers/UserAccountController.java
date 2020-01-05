@@ -47,6 +47,10 @@ public class UserAccountController {
         return "user/account";
     }
 
+    /**
+     User's data and password management
+     */
+
     @GetMapping("/edit")
     public String prepareUserEditButtonsPage() {
         return "user/edit-data-buttons-by-user";
@@ -80,5 +84,15 @@ public class UserAccountController {
                                               throws ServletException {
         userService.processEditPasswordUser(dataDTO, principal, req);
         return "redirect:/login";
+    }
+
+    /**
+     User's donations management
+     */
+
+    @GetMapping("/myDonations")
+    public String getUserDonationsPage(Model model, Principal principal) {
+        model.addAttribute("allUserDonations", donationService.findAllOrderedDonationsForUser(principal));
+        return "user/all-user-donations";
     }
 }

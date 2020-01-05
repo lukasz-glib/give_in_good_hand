@@ -23,13 +23,13 @@
             <th>Informacja o darze</th>
             <th>Szczegółowa data odbioru</th>
         </tr>
-        <c:forEach items="${allUsersDonations}" var="donation" varStatus="stat">
+        <c:forEach items="${allUserDonations}" var="donation" varStatus="stat">
             <tr class="form-group text-area">
                 <td>${stat.count}</td>
-                <td>${donation.email}</td>
-                <td>${donation.username}</td>
-                <td>${donation.lastName}</td>
-                <td>${donation.active}</td>
+                <td>${donation.quantity}</td>
+                <td>${donation.city}</td>
+                <td>${donation.pickUpComment}</td>
+                <td>${donation.pickUpDate}, ${donation.pickUpTime}</td>
             </tr>
         </c:forEach>
     </table>
