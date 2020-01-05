@@ -95,4 +95,10 @@ public class UserAccountController {
         model.addAttribute("allUserDonations", donationService.getOwnDonationsForUser(principal));
         return "user/all-user-donations";
     }
+
+    @GetMapping("/myDonations/delete")
+    public String processDeleteUsersDonation(Long id) {
+        donationService.deleteDonation(id);
+        return "redirect:/user/myDonations";
+    }
 }

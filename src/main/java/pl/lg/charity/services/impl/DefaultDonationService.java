@@ -48,6 +48,16 @@ public class DefaultDonationService implements DonationService {
     @Override
     public List<Donation> getOwnDonationsForUser(Principal principal) {
         return donationRepository.findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(userRepository
-                .findByEmail(principal.getName()));
+                .findUserByEmail(principal.getName()));
+    }
+
+    @Override
+    public void deleteDonation(Long id) {
+        Donation donation = donationRepository.findById(id).get();
+        log.debug("Usunięcie daru (zalogowanego użytkownika): {}", donation);
+        if (donation != null && (!donation.getStatus())) {
+            donationRepository.delete(donation);
+        }
+        log.debug("Dar został usunięty (zalogowanego użytkownika): {}", donation);
     }
 }

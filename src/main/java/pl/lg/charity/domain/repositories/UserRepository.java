@@ -14,8 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserByEmail(String email);
 
-    User findByEmail(String email);
-
     @Query(value = "SELECT * FROM users JOIN users_roles ON users.id = users_roles.user_id " +
             "WHERE users_roles.roles_id = 2", nativeQuery = true)
     List<User> findAllAdmins();
