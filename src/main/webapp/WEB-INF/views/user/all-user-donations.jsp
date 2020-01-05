@@ -16,6 +16,7 @@
 <div class="container--90">
     <table id="tabAdmin">
         <h1>Moje zarejestrowane dary</h1>
+        <h3>Uwaga: nie można usunąć daru ze statusem "Dary odebrane" !</h3>
         <tr class="form-group form-group--inline">
             <th>Lp.</th>
             <th>Ilość worków</th>
@@ -44,11 +45,13 @@
                     <c:url value="/user/myDonations/delete" var="deleteURL">
                         <c:param name="id" value="${donation.id}"/>
                     </c:url>
-                    <c:url value="/user/myDonations/update" var="updateURL">
-                        <c:param name="id" value="${donation.id}"/>
-                    </c:url>
                     <a href="${deleteURL}" class="btn btn--without-border">Usuń</a>
-                    <a href="${updateURL}" class="btn btn--without-border">Edytuj</a>
+                    <c:if test="${donation.status == false}">
+                        <c:url value="/user/myDonations/update" var="updateURL">
+                            <c:param name="id" value="${donation.id}"/>
+                        </c:url>
+                        <a href="${updateURL}" class="btn btn--without-border">Edytuj</a>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>
