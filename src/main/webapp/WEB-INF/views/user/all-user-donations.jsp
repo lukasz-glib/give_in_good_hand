@@ -21,7 +21,10 @@
             <th>Ilość worków</th>
             <th>Miasto</th>
             <th>Informacja o darze</th>
-            <th>Szczegółowa data odbioru</th>
+            <th>Data odbioru</th>
+            <th>Godzina odbioru</th>
+            <th>Status darów</th>
+            <th>Akcja</th>
         </tr>
         <c:forEach items="${allUserDonations}" var="donation" varStatus="stat">
             <tr class="form-group text-area">
@@ -29,7 +32,24 @@
                 <td>${donation.quantity}</td>
                 <td>${donation.city}</td>
                 <td>${donation.pickUpComment}</td>
-                <td>${donation.pickUpDate}, ${donation.pickUpTime}</td>
+                <td>${donation.pickUpDate}</td>
+                <td>${donation.pickUpTime}</td>
+                <c:if test="${donation.status == true}">
+                    <td>Dary <b>odebrane</b></td>
+                </c:if>
+                <c:if test="${donation.status == false}">
+                    <td>Dary <b>nieodebrane</b></td>
+                </c:if>
+                <td>
+                    <c:url value="/user/myDonations/delete" var="deleteURL">
+                        <c:param name="id" value="${donation.id}"/>
+                    </c:url>
+                    <c:url value="/user/myDonations/update" var="updateURL">
+                        <c:param name="id" value="${donation.id}"/>
+                    </c:url>
+                    <a href="${deleteURL}" class="btn btn--without-border">Usuń</a>
+                    <a href="${updateURL}" class="btn btn--without-border">Edytuj</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
