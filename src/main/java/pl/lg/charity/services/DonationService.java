@@ -15,4 +15,6 @@ public interface DonationService {
     List<Donation>getOwnDonationsForUser(Principal principal);
 
     void deleteDonation(Long id);
+
+    DonationDataDTO prepareUpdateDonationForUser(Long id);
 }

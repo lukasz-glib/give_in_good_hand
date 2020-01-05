@@ -9,6 +9,7 @@ import pl.lg.charity.domain.entities.User;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 public class DonationDataDTO {
 
+    private Long id;
     private Long quantity;
     @NotBlank
     private String street;
@@ -29,5 +31,6 @@ public class DonationDataDTO {
     private String pickUpComment;
     private List<Category> categories = new ArrayList<>();
     private Institution institution;
-
+    private Boolean status = Boolean.FALSE;
+    private LocalDateTime addingDate = LocalDateTime.now();
 }

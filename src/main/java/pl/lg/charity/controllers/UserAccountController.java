@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
+import pl.lg.charity.dtos.DonationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.services.CategoryService;
 import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
 import pl.lg.charity.services.UserService;
@@ -27,13 +29,15 @@ public class UserAccountController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final UserService userService;
+    private final CategoryService categoryService;
 
     public UserAccountController(UserRepository userRepository, InstitutionService institutionService,
-                                 DonationService donationService, UserService userService) {
+                                 DonationService donationService, UserService userService, CategoryService categoryService) {
         this.userRepository = userRepository;
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
@@ -101,4 +105,23 @@ public class UserAccountController {
         donationService.deleteDonation(id);
         return "redirect:/user/myDonations";
     }
+
+    @GetMapping("/myDonations/update")
+    public String prepareUpdateUsersDonation(Long id, Model model) {
+        model.addAttribute("editDonations", donationService.prepareUpdateDonationForUser(id));
+        model.addAttribute("categories", categoryService.findAllCategories());
+        model.addAttribute("institutions", institutionService.findAllInstitutions());
+        return "user/edit-user-donation";
+    }
+
+    @PostMapping("myDonations/update")
+    public String processUpdateUsersDonation(@ModelAttribute("editDonations") @Valid DonationDataDTO donationData,
+                                             BindingResult result) {
+        if (result.hasErrors()) {
+            return "user/edit-user-donation";
+        }
+        donationService.addDonation(donationData);
+        return "redirect:/user/myDonations";
+    }
+
 }

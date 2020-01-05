@@ -60,4 +60,11 @@ public class DefaultDonationService implements DonationService {
         }
         log.debug("Dar został usunięty (zalogowanego użytkownika): {}", donation);
     }
+
+    @Override
+    public DonationDataDTO prepareUpdateDonationForUser(Long id) {
+        Donation donation = donationRepository.findById(id).get();
+        ModelMapper model = new ModelMapper();
+        return model.map(donation, DonationDataDTO.class);
+    }
 }
