@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,10 @@ public class Donation {
     private Long id;
     @Column(nullable = false)
     private Integer quantity;
-
     @ManyToMany
     private List<Category> categories = new ArrayList<>();
-
     @ManyToOne
     private Institution institution;
-
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
@@ -46,7 +44,8 @@ public class Donation {
     private LocalTime pickUpTime;
     @Column(nullable = false)
     private String pickUpComment;
-
     @ManyToOne
     private User user;
+    private Boolean status = Boolean.FALSE;
+    private LocalDateTime addingDate = LocalDateTime.now();
 }
