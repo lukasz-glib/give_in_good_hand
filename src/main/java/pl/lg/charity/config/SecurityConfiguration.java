@@ -31,7 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/media/**")
                 .antMatchers("/webjars/**")
                 .antMatchers("/h2-console", "/h2-console/**");
-
     }
 
     @Override
