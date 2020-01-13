@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-    @Query(value = "SELECT SUM(quantity) FROM charity_donation.donations;", nativeQuery = true)
+    @Query(value = "SELECT SUM(quantity) FROM donations;", nativeQuery = true)
     Integer sumOfQuantities();
 
     List<Donation> findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(User user);

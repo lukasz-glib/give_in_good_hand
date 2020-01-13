@@ -7,7 +7,7 @@ import pl.lg.charity.domain.entities.Institution;
 
 public interface InstitutionRepository extends JpaRepository<Institution, Long> {
 
-    @Query(value = "SELECT MAX(id) FROM charity_donation.institutions", nativeQuery = true)
+    @Query(value = "SELECT MAX(id) FROM institutions", nativeQuery = true)
     Integer numberOfAllInstitutions();
 
 }
