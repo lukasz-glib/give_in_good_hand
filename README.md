@@ -9,11 +9,11 @@ https://giveingoodhand.herokuapp.com/
 Please check the app functionalities. There are two default users: user and admin. You can sign up your own account like 
 user or check default user and check default admin.
 
-##For User Account:
+## For User Account:
 - email: user@gmail.com
 - password: user
 
-##For Admin Account:
+## For Admin Account:
 - email: admin@gmail.com
 - password: admin
 
