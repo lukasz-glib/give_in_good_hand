@@ -164,6 +164,36 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+
+      let categories = document.querySelectorAll('input[name="categories"]:checked');
+      let catArray = [];
+      for (let i = 0; i < categories.length; i++) {
+        catArray.push(categories[i].value);
+      }
+
+      let institutions = document.querySelectorAll("#institution");
+      for (let i = 0; i < institutions.length; i++) {
+        console.log(institutions[i]);
+        document.getElementById("organizationSummary").innerText = "Dla Kogo: " + institutions[i].value;
+      }
+
+      let quantity = document.querySelector("#bags").value;
+      let street = document.querySelector("#street").value;
+      let city = document.querySelector("#city").value;
+      let zipCode = document.querySelector("#zipCode").value;
+      let phoneNumber = document.querySelector("#phoneNumber").value;
+      let date = document.querySelector("#date").value;
+      let time = document.querySelector("#time").value;
+      let comment = document.querySelector("#comment").value;
+
+      document.getElementById("bagsSummary").innerText = quantity + " worki (worków) zawierające/-ych: " + catArray.join(", ");
+      document.getElementById("streetSummary").innerText = street;
+      document.getElementById("citySummary").innerText = city;
+      document.getElementById("zipCodeSummary").innerText = zipCode;
+      document.getElementById("phoneSummary").innerText = phoneNumber;
+      document.getElementById("dateSummary").innerText = date;
+      document.getElementById("timeSummary").innerText = time;
+      document.getElementById("commentSummary").innerText = comment;
     }
 
   }
