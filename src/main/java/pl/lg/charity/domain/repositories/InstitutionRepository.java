@@ -13,7 +13,7 @@ public interface InstitutionRepository extends JpaRepository<Institution, Long> 
     @Query(value = "SELECT MAX(id) FROM institutions", nativeQuery = true)
     Integer numberOfAllInstitutions();
 
-    /*
+    /**
     Below - queries for heroku
      */
 

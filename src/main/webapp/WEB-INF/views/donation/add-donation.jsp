@@ -102,16 +102,21 @@
                                         <div class="form-section--column">
                                                 <h4>Adres odbioru</h4>
                                                 <div class="form-group form-group--inline">
-                                                        <label> Ulica <form:input id="street" path="street"/> </label>
-                                                </div>
-
-                                                <div class="form-group form-group--inline">
-                                                        <label> Miasto <form:input id="city" path="city"/> </label>
+                                                        <label>
+                                                               Ulica <form:input id="street" path="street" name="street"/>
+                                                        </label>
                                                 </div>
 
                                                 <div class="form-group form-group--inline">
                                                         <label>
-                                                                Kod pocztowy <form:input id="zipCode" path="zipCode"/>
+                                                               Miasto <form:input id="city" path="city" name="city"/>
+                                                        </label>
+                                                </div>
+
+                                                <div class="form-group form-group--inline">
+                                                        <label>
+                                                                Kod pocztowy <form:input id="zipCode" path="zipCode"
+                                                                                         name="zipCode"/>
                                                         </label>
                                                 </div>
 
@@ -127,20 +132,23 @@
                                                 <h4>Termin odbioru</h4>
                                                 <div class="form-group form-group--inline">
                                                         <label>
-                                                                Data <form:input id="date" path="pickUpDate" type="date"/>
+                                                                Data <form:input id="date" path="pickUpDate" type="date"
+                                                                                 name="date"/>
                                                         </label>
                                                 </div>
 
                                                 <div class="form-group form-group--inline">
                                                         <label>
-                                                            Godzina <form:input id="time" path="pickUpTime" type="time"/>
+                                                            Godzina <form:input id="time" path="pickUpTime" type="time"
+                                                                                name="time"/>
                                                         </label>
                                                 </div>
 
                                                 <div class="form-group form-group--inline">
                                                         <label>
                                                                 Uwagi dla kuriera
-                                                                <form:textarea id="comment" path="pickUpComment" rows="5"/>
+                                                                <form:textarea id="comment" path="pickUpComment" rows="5"
+                                                                               name="comment"/>
                                                         </label>
                                                 </div>
                                         </div>

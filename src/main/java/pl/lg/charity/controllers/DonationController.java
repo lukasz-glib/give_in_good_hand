@@ -47,5 +47,4 @@ public class DonationController {
         donationService.addDonation(donationData);
         return "donation/form-confirmation";
     }
-
 }

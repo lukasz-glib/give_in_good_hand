@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    /*
+    /**
     Below - query for heroku
      */
 
