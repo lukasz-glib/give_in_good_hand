@@ -173,8 +173,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       let institutions = document.querySelectorAll("#institution");
       for (let i = 0; i < institutions.length; i++) {
-        console.log(institutions[i]);
-        document.getElementById("organizationSummary").innerText = "Dla Kogo: " + institutions[i].value;
+        if (institutions[i].checked) {
+          let institutionName = document.querySelector("#nameIns").innerText;
+          document.getElementById("organizationSummary").innerText = "Dla Kogo: Fundacja";
+        }
       }
 
       let quantity = document.querySelector("#bags").value;
@@ -186,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
       let time = document.querySelector("#time").value;
       let comment = document.querySelector("#comment").value;
 
-      document.getElementById("bagsSummary").innerText = quantity + " worki (worków) zawierające/-ych: " + catArray.join(", ");
+      document.getElementById("bagsSummary").innerText = quantity + " worki (worków)";
       document.getElementById("streetSummary").innerText = street;
       document.getElementById("citySummary").innerText = city;
       document.getElementById("zipCodeSummary").innerText = zipCode;

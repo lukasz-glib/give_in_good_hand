@@ -37,15 +37,17 @@
                 <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
                 <form:form method="post" modelAttribute="donations">
+
                         <!-- STEP 1: class .active is switching steps -->
                         <div data-step="1" class="active">
                                 <h3>Zaznacz co chcesz oddać:</h3>
                                 <c:forEach items="${categories}" var="category">
                                 <div class="form-group form-group--checkbox">
                                         <label>
-                                                <form:radiobutton name="categories" path="categories" value="${category.id}"/>
+                                                <form:radiobutton name="categories" path="categories" class="categoriesAll"
+                                                                  value="${category.id}"/>
                                                 <span class="checkbox"></span>
-                                                <span class="description">${category.name}</span>
+                                                <span class="description" id="nameCateg">${category.name}</span>
                                         </label>
                                 </div>
                                 </c:forEach>
@@ -81,7 +83,7 @@
                                                                   name="organization" id="institution"/>
                                                 <span class="checkbox radio"></span>
                                                 <span class="description">
-                                                        <div class="title">${institution.name}”</div>
+                                                        <div class="title" id="nameIns">${institution.name}”</div>
                                                         <div class="subtitle">${institution.description}</div>
                                                 </span>
                                         </label>
