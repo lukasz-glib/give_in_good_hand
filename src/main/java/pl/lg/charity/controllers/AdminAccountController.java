@@ -1,5 +1,6 @@
 package pl.lg.charity.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
+import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.InstitutionDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
 import pl.lg.charity.services.DonationService;
@@ -27,7 +29,8 @@ public class AdminAccountController {
     private final DonationService donationService;
     private final RegistrationService registrationService;
 
-    public AdminAccountController(UserRepository userRepository, InstitutionService institutionService, DonationService donationService, RegistrationService registrationService) {
+    public AdminAccountController(UserRepository userRepository, InstitutionService institutionService,
+                                  DonationService donationService, RegistrationService registrationService) {
         this.userRepository = userRepository;
         this.institutionService = institutionService;
         this.donationService = donationService;
@@ -104,8 +107,19 @@ public class AdminAccountController {
     }
 
     @GetMapping("admins/delete")
-    public String processDeleteAdmin(RegistrationDataDTO registrationData, Long id) {
-        registrationService.deleteAdminOrUser(registrationData, id);
+    public String prepareDeleteAdmin(Model model, Long id) {
+        model.addAttribute("deleteAdmin",registrationService.findAdminToDeleteById(id));
+        return "admin/confirmation-delete-admins";
+    }
+
+    @PostMapping("admins/delete")
+    public String processDeleteAdmin(@ModelAttribute("deleteAdmin") @Valid DeleteAdminValidationDataDTO dataDTO,
+                                     BindingResult result, Long id) {
+        if (result.hasErrors()) {
+            return "admin/confirmation-delete-admins";
+        }
+        ModelMapper modelMapper = new ModelMapper();
+        registrationService.deleteAdminOrUser(modelMapper.map(dataDTO, RegistrationDataDTO.class), id);
         return "redirect:/admin/admins";
     }
 

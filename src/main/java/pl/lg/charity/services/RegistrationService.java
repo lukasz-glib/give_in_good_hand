@@ -1,5 +1,6 @@
 package pl.lg.charity.services;
 
+import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
 import java.util.List;
 
@@ -12,6 +13,8 @@ public interface RegistrationService {
     List<RegistrationDataDTO> findAllAdmins();
 
     List<RegistrationDataDTO> findAllUsers();
+
+    DeleteAdminValidationDataDTO findAdminToDeleteById(Long id);
 
     void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id);
 

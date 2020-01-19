@@ -8,6 +8,7 @@ import pl.lg.charity.domain.entities.Role;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
+import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
 import pl.lg.charity.services.RegistrationService;
 
@@ -69,6 +70,12 @@ public class DefaultRegistrationService implements RegistrationService {
         return userRepository.findAllUsers().stream()
                 .map(m -> modelMapperFindAllUsers.map(m, RegistrationDataDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public DeleteAdminValidationDataDTO findAdminToDeleteById(Long id) {
+        ModelMapper modelMapperFindAdminToDelete = new ModelMapper();
+        return modelMapperFindAdminToDelete.map(userRepository.getOne(id), DeleteAdminValidationDataDTO.class);
     }
 
     @Override
