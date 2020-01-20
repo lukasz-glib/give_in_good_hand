@@ -1,6 +1,7 @@
 package pl.lg.charity.validation.validators;
 
 import org.passay.*;
+import pl.lg.charity.enums.PolishCharacterData;
 import pl.lg.charity.validation.constraints.ValidPassword;
 
 import javax.validation.ConstraintValidator;
@@ -19,10 +20,10 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     public boolean isValid(String password, ConstraintValidatorContext context) {
         PasswordValidator validator = new PasswordValidator(Arrays.asList(
            new LengthRule(8, 30),
-           new CharacterRule(EnglishCharacterData.UpperCase, 1),
-           new CharacterRule(EnglishCharacterData.LowerCase, 1),
-           new CharacterRule(EnglishCharacterData.Digit, 1),
-           new CharacterRule(EnglishCharacterData.Special, 1),
+           new CharacterRule(PolishCharacterData.UpperCase, 1),
+           new CharacterRule(PolishCharacterData.LowerCase, 1),
+           new CharacterRule(PolishCharacterData.Digit, 1),
+           new CharacterRule(PolishCharacterData.Special, 1),
            new WhitespaceRule()
         ));
 
