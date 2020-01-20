@@ -17,9 +17,8 @@ public class RegistrationDataDTO {
     private String lastName;
     @NotBlank @Email
     private String email;
-    @ValidPassword
+    @NotBlank @ValidPassword
     private String password;
-    @ValidPassword
     private String repassword;
     private Boolean active;
 }

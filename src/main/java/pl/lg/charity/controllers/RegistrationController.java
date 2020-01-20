@@ -32,7 +32,7 @@ public class RegistrationController {
     public String processRegistrationPage(@ModelAttribute("registrationData")
                                           @Valid RegistrationDataDTO registrationData, BindingResult result){
         if (result.hasErrors()) {
-            return "register/form";
+            return "register/register";
         }
         registrationService.register(registrationData);
         return "redirect:/";
