@@ -23,7 +23,7 @@ public class ActiveAdminForDeleteAdminDTO implements ConstraintValidator<ActiveA
         boolean valid = user.getEmail().equals(SecurityContextHolder.getContext().getAuthentication().getName());
         if (valid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("ActiveAdmin.admin.*")
+            context.buildConstraintViolationWithTemplate("Nie można usunąć konta zalogowanego administratora!")
                     .addConstraintViolation();
         }
         return !valid;
