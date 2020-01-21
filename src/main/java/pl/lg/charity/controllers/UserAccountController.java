@@ -137,6 +137,6 @@ public class UserAccountController {
     @GetMapping("myDonations/changeStatus")
     public String changingUserDonationStatus(Long id) {
         donationService.changeDonationStatus(id);
-        return "user/details-user-donation";
+        return "redirect:/user/myDonations";
     }
 }
