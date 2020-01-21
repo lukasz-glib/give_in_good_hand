@@ -17,4 +17,8 @@ public interface DonationService {
     void deleteDonation(Long id);
 
     DonationDataDTO prepareUpdateDonationForUser(Long id);
+
+    DonationDataDTO prepareDetailsOfUserDonation(Long id);
+
+    void changeDonationStatus(Long id);
 }

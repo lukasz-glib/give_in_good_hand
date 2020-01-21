@@ -67,4 +67,21 @@ public class DefaultDonationService implements DonationService {
         ModelMapper model = new ModelMapper();
         return model.map(donation, DonationDataDTO.class);
     }
+
+    @Override
+    public DonationDataDTO prepareDetailsOfUserDonation(Long id) {
+        Donation detailDonation = donationRepository.getOne(id);
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(detailDonation, DonationDataDTO.class);
+    }
+
+    @Override
+    public void changeDonationStatus(Long id) {
+        Donation donation = donationRepository.getOne(id);
+        if (donation.getStatus()) {
+            donationRepository.changeStatusToUndelivered(id);
+        } else {
+            donationRepository.changeStatusToDelivered(id);
+        }
+    }
 }
