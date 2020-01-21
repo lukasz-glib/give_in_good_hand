@@ -52,6 +52,10 @@
                         </c:url>
                         <a href="${updateURL}" class="btn btn--without-border">Edytuj</a>
                     </c:if>
+                    <c:url value="/user/myDonations/details" var="detailsURL">
+                        <c:param name="id" value="${donation.id}"/>
+                    </c:url>
+                    <a href="${detailsURL}" class="btn btn--without-border">Szczegóły</a>
                 </td>
             </tr>
         </c:forEach>

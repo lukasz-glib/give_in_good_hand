@@ -124,4 +124,19 @@ public class UserAccountController {
         return "redirect:/user/myDonations";
     }
 
+    @GetMapping("myDonations/details")
+    public String prepareDetailsOfUserDonation(Model model, Long id) {
+        model.addAttribute("institutionName", donationService.prepareDetailsOfUserDonation(id).getInstitution().getName());
+        model.addAttribute("pickUpDate", donationService.prepareDetailsOfUserDonation(id).getPickUpDate());
+        model.addAttribute("pickUpTime", donationService.prepareDetailsOfUserDonation(id).getPickUpTime());
+        model.addAttribute("status", donationService.prepareDetailsOfUserDonation(id).getStatus());
+        model.addAttribute("id", donationService.prepareDetailsOfUserDonation(id).getId());
+        return "user/details-user-donation";
+    }
+
+    @GetMapping("myDonations/changeStatus")
+    public String changingUserDonationStatus(Long id) {
+        donationService.changeDonationStatus(id);
+        return "user/details-user-donation";
+    }
 }
