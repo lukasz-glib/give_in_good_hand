@@ -10,6 +10,7 @@ import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.services.EmailService;
 import pl.lg.charity.services.RegistrationService;
 
 import javax.transaction.Transactional;
@@ -24,12 +25,14 @@ public class DefaultRegistrationService implements RegistrationService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final EmailService emailService;
 
     public DefaultRegistrationService(PasswordEncoder passwordEncoder, UserRepository userRepository,
-                                      RoleRepository roleRepository) {
+                                      RoleRepository roleRepository, EmailService emailService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -41,7 +44,11 @@ public class DefaultRegistrationService implements RegistrationService {
         user.setPassword(encodedPassword);
         Role roleUser = roleRepository.getByName("ROLE_USER");
         user.getRoles().add(roleUser);
+        emailService.sendSimpleMessage(user.getEmail(), "give_in_good_hand app: Please complete your registration!",
+                "To activate your account, please click link");
+        log.debug("Rejestracja nowego użytkownika: {}", user);
         userRepository.save(user);
+        log.debug("Nowy użytkownik został zarejestrowany: {}", user);
     }
 
     @Override
