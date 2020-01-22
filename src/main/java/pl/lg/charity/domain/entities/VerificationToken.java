@@ -36,6 +36,4 @@ public class VerificationToken {
         expiryDate = implementationOfExpiryDate();
         token = UUID.randomUUID().toString();
     }
-
-
 }

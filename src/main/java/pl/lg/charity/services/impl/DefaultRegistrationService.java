@@ -9,6 +9,7 @@ import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.entities.VerificationToken;
 import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
+import pl.lg.charity.domain.repositories.VerificationTokenRepository;
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
 import pl.lg.charity.services.EmailService;
@@ -27,13 +28,15 @@ public class DefaultRegistrationService implements RegistrationService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final EmailService emailService;
+    private final VerificationTokenRepository verificationTokenRepository;
 
     public DefaultRegistrationService(PasswordEncoder passwordEncoder, UserRepository userRepository,
-                                      RoleRepository roleRepository, EmailService emailService) {
+                                      RoleRepository roleRepository, EmailService emailService, VerificationTokenRepository verificationTokenRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.emailService = emailService;
+        this.verificationTokenRepository = verificationTokenRepository;
     }
 
     @Override
@@ -48,10 +51,11 @@ public class DefaultRegistrationService implements RegistrationService {
         VerificationToken verificationToken = new VerificationToken(user);
         emailService.sendSimpleMessage(user.getEmail(), "give_in_good_hand app: Please complete your registration!",
                 "To activate your account, please click link: " +
-                        "http://localhost:8080/registration/confirm-account?token="+verificationToken.getToken());
+                        "http://localhost:8080/register/confirmation?token="+verificationToken.getToken());
         log.debug("Rejestracja nowego użytkownika: {}", user);
         userRepository.save(user);
         log.debug("Nowy użytkownik został zarejestrowany: {}", user);
+        verificationTokenRepository.save(verificationToken);
     }
 
     @Override
@@ -91,6 +95,12 @@ public class DefaultRegistrationService implements RegistrationService {
     @Override
     public void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id) {
         User user = userRepository.findById(id).get();
+        VerificationToken verificationToken = verificationTokenRepository.findByUserId(id);
+        log.debug("Usunięcie tokenu (użytkownika): {}", verificationToken);
+        if (verificationToken != null) {
+            verificationTokenRepository.delete(verificationToken);
+        }
+        log.debug("Token użytkownika został usunięty: {}", verificationToken);
         log.debug("Usunięcie admina (użytkownika): {}", user);
         if (user != null) {
             userRepository.delete(user);
@@ -120,5 +130,12 @@ public class DefaultRegistrationService implements RegistrationService {
     @Override
     public void lockUser(Long id) {
         userRepository.statusBlockedUser(id);
+    }
+
+    @Override
+    public void makeUsersStatusActive(Long id) {
+        User user = userRepository.getOne(id);
+        user.setActive(Boolean.TRUE);
+        userRepository.save(user);
     }
 }

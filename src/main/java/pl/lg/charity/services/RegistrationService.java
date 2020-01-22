@@ -25,4 +25,6 @@ public interface RegistrationService {
     void lockUser(Long id);
 
     void unlockUser(Long id);
+
+    void makeUsersStatusActive(Long id);
 }
