@@ -31,7 +31,7 @@ a unique activation link sent to them over email. This link will expire within 2
 
 **Gmail SMTP Properties**
 We can send an email via Gmail SMTP server. We have to specify the mail server properties in the application.properties 
-file using the spring.mail.* namespace - like on below picture:
+file using the spring.mail.* namespace - like on the picture below:
 
 ![Screenshot](readme-img/Gmail_SMTP_properties.png)
 
