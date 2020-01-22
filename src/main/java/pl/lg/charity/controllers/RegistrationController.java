@@ -47,8 +47,8 @@ public class RegistrationController {
         if (verificationToken != null) {
             registrationService.makeUsersStatusActive(verificationToken.getUser().getId());
         } else {
-            return "failed-activation";
+            return "register/failed-activation";
         }
-        return "complete-activation";
+        return "register/complete-activation";
     }
 }
