@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.lg.charity.domain.entities.Role;
 import pl.lg.charity.domain.entities.User;
+import pl.lg.charity.domain.entities.VerificationToken;
 import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
@@ -44,8 +45,10 @@ public class DefaultRegistrationService implements RegistrationService {
         user.setPassword(encodedPassword);
         Role roleUser = roleRepository.getByName("ROLE_USER");
         user.getRoles().add(roleUser);
+        VerificationToken verificationToken = new VerificationToken(user);
         emailService.sendSimpleMessage(user.getEmail(), "give_in_good_hand app: Please complete your registration!",
-                "To activate your account, please click link");
+                "To activate your account, please click link: " +
+                        "http://localhost:8080/registration/confirm-account?token="+verificationToken.getToken());
         log.debug("Rejestracja nowego użytkownika: {}", user);
         userRepository.save(user);
         log.debug("Nowy użytkownik został zarejestrowany: {}", user);

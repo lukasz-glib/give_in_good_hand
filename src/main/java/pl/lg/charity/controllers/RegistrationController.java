@@ -35,6 +35,6 @@ public class RegistrationController {
             return "register/register";
         }
         registrationService.register(registrationData);
-        return "redirect:/";
+        return "register/confirm-registration";
     }
 }
