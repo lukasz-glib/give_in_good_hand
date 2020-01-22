@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.lg.charity.domain.entities.Donation;
 import pl.lg.charity.domain.entities.Role;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.entities.VerificationToken;
+import pl.lg.charity.domain.repositories.DonationRepository;
 import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.domain.repositories.VerificationTokenRepository;
@@ -29,14 +31,18 @@ public class DefaultRegistrationService implements RegistrationService {
     private final RoleRepository roleRepository;
     private final EmailService emailService;
     private final VerificationTokenRepository verificationTokenRepository;
+    private final DonationRepository donationRepository;
 
     public DefaultRegistrationService(PasswordEncoder passwordEncoder, UserRepository userRepository,
-                                      RoleRepository roleRepository, EmailService emailService, VerificationTokenRepository verificationTokenRepository) {
+                                      RoleRepository roleRepository, EmailService emailService,
+                                      VerificationTokenRepository verificationTokenRepository,
+                                      DonationRepository donationRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.emailService = emailService;
         this.verificationTokenRepository = verificationTokenRepository;
+        this.donationRepository = donationRepository;
     }
 
     @Override
@@ -96,11 +102,17 @@ public class DefaultRegistrationService implements RegistrationService {
     public void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id) {
         User user = userRepository.findById(id).get();
         VerificationToken verificationToken = verificationTokenRepository.findByUserId(id);
+        List<Donation> userDonations = donationRepository.findAllByUserEmail(user.getEmail());
         log.debug("Usunięcie tokenu (użytkownika): {}", verificationToken);
         if (verificationToken != null) {
             verificationTokenRepository.delete(verificationToken);
         }
         log.debug("Token użytkownika został usunięty: {}", verificationToken);
+        log.debug("Usunięcie przekazanych darów użytkownika: {}", userDonations);
+        if (userDonations != null) {
+            donationRepository.deleteAll(userDonations);
+        }
+        log.debug("Dary użytkownika zostały usunięte: {}", userDonations);
         log.debug("Usunięcie admina (użytkownika): {}", user);
         if (user != null) {
             userRepository.delete(user);

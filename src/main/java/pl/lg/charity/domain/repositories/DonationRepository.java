@@ -11,10 +11,12 @@ import java.util.List;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-    @Query(value = "SELECT SUM(quantity) FROM donations;", nativeQuery = true)
-    Integer sumOfQuantities();
+    List<Donation> findAllByUserEmail(String email);
 
     List<Donation> findAllByUserOrderByStatusDescPickUpDateAscAddingDateAsc(User user);
+
+    @Query(value = "SELECT SUM(quantity) FROM donations;", nativeQuery = true)
+    Integer sumOfQuantities();
 
     @Modifying
     @Transactional
