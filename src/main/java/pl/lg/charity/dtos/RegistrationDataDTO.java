@@ -2,6 +2,7 @@ package pl.lg.charity.dtos;
 
 
 import lombok.Data;
+import pl.lg.charity.validation.constraints.UniqueEmail;
 import pl.lg.charity.validation.constraints.ValidPassword;
 
 import javax.validation.constraints.Email;
@@ -15,7 +16,7 @@ public class RegistrationDataDTO {
     private String username;
     @NotBlank
     private String lastName;
-    @NotBlank @Email
+    @NotBlank @Email @UniqueEmail
     private String email;
     @NotBlank @ValidPassword
     private String password;
