@@ -13,9 +13,11 @@ import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.InstitutionDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataDTO;
 import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
 import pl.lg.charity.services.RegistrationService;
+import pl.lg.charity.services.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -28,13 +30,16 @@ public class AdminAccountController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final RegistrationService registrationService;
+    private final UserService userService;
 
     public AdminAccountController(UserRepository userRepository, InstitutionService institutionService,
-                                  DonationService donationService, RegistrationService registrationService) {
+                                  DonationService donationService, RegistrationService registrationService,
+                                  UserService userService) {
         this.userRepository = userRepository;
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.registrationService = registrationService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -146,12 +151,12 @@ public class AdminAccountController {
     }
 
     @PostMapping("/admins/update")
-    public String processUpdateAdminAccount(@ModelAttribute("updateAdmin") @Valid RegistrationDataDTO dataDTO,
+    public String processUpdateAdminAccount(@ModelAttribute("updateAdmin") @Valid UpdateUserDataDTO dataDTO,
                                             BindingResult result) {
         if (result.hasErrors()) {
             return "admin/update-admin";
         }
-        registrationService.registerAdmin(dataDTO);
+        userService.processEditDataAdminsByAdmin(dataDTO);
         return "redirect:/admin/admins";
     }
 
@@ -178,12 +183,12 @@ public class AdminAccountController {
     }
 
     @PostMapping("/users/update")
-    public String processUpdateUserAccount(@ModelAttribute("updateUser") @Valid RegistrationDataDTO dataDTO,
+    public String processUpdateUserAccount(@ModelAttribute("updateUser") @Valid UpdateUserDataDTO dataDTO,
                                            BindingResult result) {
         if (result.hasErrors()) {
-            return "users/update-user";
+            return "user/update-user";
         }
-        registrationService.register(dataDTO);
+        userService.processEditDataUsersByAdmin(dataDTO);
         return "redirect:/admin/users";
     }
 

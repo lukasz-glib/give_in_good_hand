@@ -3,9 +3,12 @@ package pl.lg.charity.services.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import pl.lg.charity.domain.entities.Role;
 import pl.lg.charity.domain.entities.User;
+import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataDTO;
 import pl.lg.charity.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,10 +24,13 @@ public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
-    public DefaultUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public DefaultUserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                              RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -58,6 +64,30 @@ public class DefaultUserService implements UserService {
         User editPasswordLoggedUser = userRepository.findUserByEmail(principal.getName());
         editPasswordLoggedUser.setPassword(passwordEncoder.encode(dataDTO.getPassword()));
         req.logout();
+    }
+
+    @Override
+    public void processEditDataUsersByAdmin(UpdateUserDataDTO dataDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        User user = modelMapper.map(dataDTO, User.class);
+        user.setActive(Boolean.TRUE);
+        String encodedPassword = passwordEncoder.encode(dataDTO.getPassword());
+        user.setPassword(encodedPassword);
+        Role roleUser = roleRepository.getByName("ROLE_USER");
+        user.getRoles().add(roleUser);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void processEditDataAdminsByAdmin(UpdateUserDataDTO dataDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        User user = modelMapper.map(dataDTO, User.class);
+        user.setActive(Boolean.TRUE);
+        String encodedPassword = passwordEncoder.encode(dataDTO.getPassword());
+        user.setPassword(encodedPassword);
+        Role roleUser = roleRepository.getByName("ROLE_ADMIN");
+        user.getRoles().add(roleUser);
+        userRepository.save(user);
     }
 
 }

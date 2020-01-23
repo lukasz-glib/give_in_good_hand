@@ -2,6 +2,8 @@ package pl.lg.charity.services;
 
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataDTO;
+
 import java.util.List;
 
 public interface RegistrationService {
@@ -18,9 +20,9 @@ public interface RegistrationService {
 
     void deleteAdminOrUser(RegistrationDataDTO registrationData, Long id);
 
-    RegistrationDataDTO prepareUpdateForAdminDataAccount(Long id);
+    UpdateUserDataDTO prepareUpdateForAdminDataAccount(Long id);
 
-    RegistrationDataDTO prepareUpdateForUserDataAccount(Long id);
+    UpdateUserDataDTO prepareUpdateForUserDataAccount(Long id);
 
     void lockUser(Long id);
 

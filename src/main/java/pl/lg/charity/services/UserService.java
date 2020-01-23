@@ -1,6 +1,7 @@
 package pl.lg.charity.services;
 
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,4 +18,8 @@ public interface UserService {
 
     void processEditPasswordUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException;
+
+    void processEditDataUsersByAdmin(UpdateUserDataDTO dataDTO);
+
+    void processEditDataAdminsByAdmin(UpdateUserDataDTO dataDTO);
 }
