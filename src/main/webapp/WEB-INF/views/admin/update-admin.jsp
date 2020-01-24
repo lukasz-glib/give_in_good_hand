@@ -35,7 +35,7 @@
 
         <div class="form-group form-group--buttons">
             <a href="/login" class="btn btn--without-border">Zaloguj się</a>
-            <button class="btn" type="submit">Edytuj konto Admina</button>
+            <button class="btn" type="submit">Edytuj dane Admina</button>
         </div>
         <form:errors path="*"/>
     </form:form>

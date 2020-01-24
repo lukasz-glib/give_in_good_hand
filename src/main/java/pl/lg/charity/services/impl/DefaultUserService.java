@@ -89,5 +89,4 @@ public class DefaultUserService implements UserService {
         user.getRoles().add(roleUser);
         userRepository.save(user);
     }
-
 }

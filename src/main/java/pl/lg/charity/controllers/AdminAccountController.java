@@ -138,7 +138,7 @@ public class AdminAccountController {
     public String processCreationAdminAccount(@ModelAttribute("registrationAdmin") @Valid RegistrationDataDTO dataDTO,
                                               BindingResult result) {
         if (result.hasErrors()) {
-            return "admin/add-admins";
+            return "admin/add-admin";
         }
         registrationService.registerAdmin(dataDTO);
         return "redirect:/admin/admins";
