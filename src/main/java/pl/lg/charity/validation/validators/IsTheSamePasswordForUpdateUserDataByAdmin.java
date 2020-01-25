@@ -1,13 +1,12 @@
 package pl.lg.charity.validation.validators;
 
-import pl.lg.charity.dtos.UpdateUserDataDTO;
-import pl.lg.charity.dtos.UpdateUserPasswordDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataByAdminDataDTO;
 import pl.lg.charity.validation.constraints.IsTheSamePassword;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class IsTheSamePasswordForUpdateUserData implements ConstraintValidator<IsTheSamePassword, UpdateUserPasswordDataDTO> {
+public class IsTheSamePasswordForUpdateUserDataByAdmin implements ConstraintValidator<IsTheSamePassword, UpdateUserDataByAdminDataDTO> {
 
     @Override
     public void initialize(IsTheSamePassword constraintAnnotation) {
@@ -15,8 +14,7 @@ public class IsTheSamePasswordForUpdateUserData implements ConstraintValidator<I
     }
 
     @Override
-    public boolean isValid(UpdateUserPasswordDataDTO dataDTO, ConstraintValidatorContext context) {
-
+    public boolean isValid(UpdateUserDataByAdminDataDTO dataDTO, ConstraintValidatorContext context) {
         boolean valid = dataDTO.getPassword().equals(dataDTO.getRepassword());
         if (!valid || dataDTO.getPassword() == null || dataDTO.getRepassword() == null) {
             context.disableDefaultConstraintViolation();

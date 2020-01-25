@@ -26,6 +26,7 @@
             <a href="/user/edit" class="btn btn">Wstecz</a>
             <button class="btn" type="submit">Edytuj hasło Użytkownika</button>
         </div>
+        <form:errors path="*"/>
     </form:form>
 </section>
 <jsp:include page="../media/footer.jsp"/>
