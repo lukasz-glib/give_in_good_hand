@@ -14,7 +14,7 @@ import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.domain.repositories.VerificationTokenRepository;
 import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
-import pl.lg.charity.dtos.UpdateUserDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataByAdminDataDTO;
 import pl.lg.charity.services.EmailService;
 import pl.lg.charity.services.RegistrationService;
 
@@ -122,17 +122,17 @@ public class DefaultRegistrationService implements RegistrationService {
     }
 
     @Override
-    public UpdateUserDataDTO prepareUpdateForAdminDataAccount(Long id) {
+    public UpdateUserDataByAdminDataDTO prepareUpdateForAdminDataAccount(Long id) {
         User admins = userRepository.findById(id).get();
         ModelMapper model = new ModelMapper();
-        return model.map(admins, UpdateUserDataDTO.class);
+        return model.map(admins, UpdateUserDataByAdminDataDTO.class);
     }
 
     @Override
-    public UpdateUserDataDTO prepareUpdateForUserDataAccount(Long id) {
+    public UpdateUserDataByAdminDataDTO prepareUpdateForUserDataAccount(Long id) {
         User users = userRepository.findById(id).get();
         ModelMapper model = new ModelMapper();
-        return model.map(users, UpdateUserDataDTO.class);
+        return model.map(users, UpdateUserDataByAdminDataDTO.class);
     }
 
     @Override

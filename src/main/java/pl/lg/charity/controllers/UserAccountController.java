@@ -11,6 +11,8 @@ import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.DonationDataDTO;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataDTO;
+import pl.lg.charity.dtos.UpdateUserPasswordDataDTO;
 import pl.lg.charity.services.CategoryService;
 import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
@@ -67,7 +69,7 @@ public class UserAccountController {
     }
 
     @PostMapping("/edit/changeData")
-    public String processEditDataUserPage(@ModelAttribute("editDataLoggedUser") @Valid RegistrationDataDTO dataDTO,
+    public String processEditDataUserPage(@ModelAttribute("editDataLoggedUser") @Valid UpdateUserDataDTO dataDTO,
                                           BindingResult result, Principal principal, HttpServletRequest req)
                                           throws ServletException {
         if (result.hasErrors()) {
@@ -84,7 +86,7 @@ public class UserAccountController {
     }
 
     @PostMapping("/edit/changePassword")
-    public String processEditPasswordUserPage(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
+    public String processEditPasswordUserPage(UpdateUserPasswordDataDTO dataDTO, Principal principal, HttpServletRequest req)
                                               throws ServletException {
         userService.processEditPasswordUser(dataDTO, principal, req);
         return "redirect:/login";

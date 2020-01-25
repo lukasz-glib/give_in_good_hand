@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.UserRepository;
-import pl.lg.charity.dtos.DeleteAdminValidationDataDTO;
-import pl.lg.charity.dtos.InstitutionDataDTO;
-import pl.lg.charity.dtos.RegistrationDataDTO;
-import pl.lg.charity.dtos.UpdateUserDataDTO;
+import pl.lg.charity.dtos.*;
 import pl.lg.charity.services.DonationService;
 import pl.lg.charity.services.InstitutionService;
 import pl.lg.charity.services.RegistrationService;
@@ -151,7 +148,7 @@ public class AdminAccountController {
     }
 
     @PostMapping("/admins/update")
-    public String processUpdateAdminAccount(@ModelAttribute("updateAdmin") @Valid UpdateUserDataDTO dataDTO,
+    public String processUpdateAdminAccount(@ModelAttribute("updateAdmin") @Valid UpdateUserDataByAdminDataDTO dataDTO,
                                             BindingResult result) {
         if (result.hasErrors()) {
             return "admin/update-admin";
@@ -183,7 +180,7 @@ public class AdminAccountController {
     }
 
     @PostMapping("/users/update")
-    public String processUpdateUserAccount(@ModelAttribute("updateUser") @Valid UpdateUserDataDTO dataDTO,
+    public String processUpdateUserAccount(@ModelAttribute("updateUser") @Valid UpdateUserDataByAdminDataDTO dataDTO,
                                            BindingResult result) {
         if (result.hasErrors()) {
             return "user/update-user";

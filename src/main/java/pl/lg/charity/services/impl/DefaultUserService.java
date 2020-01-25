@@ -8,7 +8,9 @@ import pl.lg.charity.domain.entities.User;
 import pl.lg.charity.domain.repositories.RoleRepository;
 import pl.lg.charity.domain.repositories.UserRepository;
 import pl.lg.charity.dtos.RegistrationDataDTO;
+import pl.lg.charity.dtos.UpdateUserDataByAdminDataDTO;
 import pl.lg.charity.dtos.UpdateUserDataDTO;
+import pl.lg.charity.dtos.UpdateUserPasswordDataDTO;
 import pl.lg.charity.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -34,14 +36,14 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public RegistrationDataDTO prepareEditDataUser(Principal principal) {
+    public UpdateUserDataDTO prepareEditDataUser(Principal principal) {
         User showDataLoggedUser = userRepository.findUserByEmail(principal.getName());
         ModelMapper model = new ModelMapper();
-        return model.map(showDataLoggedUser, RegistrationDataDTO.class);
+        return model.map(showDataLoggedUser, UpdateUserDataDTO.class);
     }
 
     @Override
-    public void processEditDataUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
+    public void processEditDataUser(UpdateUserDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException {
         User editDataLoggedUser = userRepository.findUserByEmail(principal.getName());
         editDataLoggedUser.setEmail(dataDTO.getEmail());
@@ -52,14 +54,14 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public RegistrationDataDTO prepareEditPasswordUser(Principal principal) {
+    public UpdateUserPasswordDataDTO prepareEditPasswordUser(Principal principal) {
         User showPasswordLoggedUser = userRepository.findUserByEmail(principal.getName());
         ModelMapper model = new ModelMapper();
-        return model.map(showPasswordLoggedUser, RegistrationDataDTO.class);
+        return model.map(showPasswordLoggedUser, UpdateUserPasswordDataDTO.class);
     }
 
     @Override
-    public void processEditPasswordUser(RegistrationDataDTO dataDTO, Principal principal, HttpServletRequest req)
+    public void processEditPasswordUser(UpdateUserPasswordDataDTO dataDTO, Principal principal, HttpServletRequest req)
             throws ServletException {
         User editPasswordLoggedUser = userRepository.findUserByEmail(principal.getName());
         editPasswordLoggedUser.setPassword(passwordEncoder.encode(dataDTO.getPassword()));
@@ -67,7 +69,7 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public void processEditDataUsersByAdmin(UpdateUserDataDTO dataDTO) {
+    public void processEditDataUsersByAdmin(UpdateUserDataByAdminDataDTO dataDTO) {
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(dataDTO, User.class);
         user.setActive(Boolean.TRUE);
@@ -79,7 +81,7 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public void processEditDataAdminsByAdmin(UpdateUserDataDTO dataDTO) {
+    public void processEditDataAdminsByAdmin(UpdateUserDataByAdminDataDTO dataDTO) {
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(dataDTO, User.class);
         user.setActive(Boolean.TRUE);
