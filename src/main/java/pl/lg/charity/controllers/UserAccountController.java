@@ -86,8 +86,12 @@ public class UserAccountController {
     }
 
     @PostMapping("/edit/changePassword")
-    public String processEditPasswordUserPage(UpdateUserPasswordDataDTO dataDTO, Principal principal, HttpServletRequest req)
+    public String processEditPasswordUserPage(@ModelAttribute("editPasswordLoggedUser") @Valid UpdateUserPasswordDataDTO dataDTO,
+                                              BindingResult result, Principal principal, HttpServletRequest req)
                                               throws ServletException {
+        if (result.hasErrors()) {
+            return "user/change-password-user";
+        }
         userService.processEditPasswordUser(dataDTO, principal, req);
         return "redirect:/login";
     }

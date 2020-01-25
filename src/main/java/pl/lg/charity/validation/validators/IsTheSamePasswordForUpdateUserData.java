@@ -1,6 +1,5 @@
 package pl.lg.charity.validation.validators;
 
-import pl.lg.charity.dtos.UpdateUserDataDTO;
 import pl.lg.charity.dtos.UpdateUserPasswordDataDTO;
 import pl.lg.charity.validation.constraints.IsTheSamePassword;
 
